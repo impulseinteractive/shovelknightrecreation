@@ -2,8 +2,11 @@ A handmade recreation of Shovel Knight. The purpose of this project is to build 
 
 Credits:
 Logan Palumbo
-Noah Palumbo
 Hoan Tran
 Alejandro Valdes
 Tristan Ligtvoet
+
+
+
+Noah Palumbo
 
