@@ -5,6 +5,5 @@ Logan Palumbo
 Noah Palumbo
 Hoan Tran
 Alejandro Valdes
-
 Tristan Ligtvoet
 
