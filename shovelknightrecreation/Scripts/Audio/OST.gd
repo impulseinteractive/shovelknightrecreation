@@ -112,24 +112,38 @@ func _snare() -> Dictionary:
 func _hat() -> Dictionary:
 	return {"freq": 9000.0, "vol": 0.3}
 
+func _octave_bass(roots: Array) -> Array:
+	var out: Array = []
+	for r in roots:
+		var oct := int(r.substr(r.length() - 1, 1))
+		var up = r.substr(0, r.length() - 1) + str(oct + 1)
+		out.append(r); out.append(""); out.append(up); out.append("")
+	return out
+
 func _ready() -> void:
 	triangle.waveform = "triangle"
 	noise.waveform = "noise"
- 
+	
+	samples_per_step = int(SAMPLE_RATE * 60.0 / BPM / STEPS_PER_BEAT)
+	samples_until_step = samples_per_step
+	_build_song()
+	pattern = song[0]
+	
 	var gen := AudioStreamGenerator.new()
 	gen.mix_rate = SAMPLE_RATE
 	gen.buffer_length = 0.15
 	stream = gen
 	play()
 	playback = get_stream_playback()
- 
-	samples_per_step = int(SAMPLE_RATE * 60.0 / BPM / STEPS_PER_BEAT)
-	samples_until_step = samples_per_step
- 
-	_build_song()
-	pattern = song[0]
+	
+	if playback == null:
+		push_error("Stream playback is null after play(). ")
 
 func _process(_delta: float) -> void:
+	if playback == null:
+		playback = get_stream_playback() as AudioStreamGeneratorPlayback
+		if playback == null:
+			return
 	_fill_buffer()
 	
 func _fill_buffer() -> void:
@@ -202,7 +216,7 @@ func _note_to_hz(note: String) -> float:
 func _build_song() -> void:
 	song = [
 		_section_intro(),
-		#_section_main_a(),
+		_section_main_a(),
 		#_section_development(),
 		#_section_main_b(),
 	]
@@ -210,17 +224,42 @@ func _build_song() -> void:
 ## INTRO SECTION 0:00-0:13
 func _section_intro() -> Array:
 	var rows: Array = []
-	## Arpeggiated bass outlining G minor root motion (G - D - G - A#)
-	var bass := ["G2", "D3", "G2", "A#2"]
-	for step in range(16):
+	var bass := _octave_bass(["G2","G2","G2","G2", "D#2","D#2","F2","D2"])
+	var chord := ["G4","A#4","D5","A#4"]
+	for step in range(32):
 		var row: Dictionary = {}
-		row["triangle"] = {"note": bass[step % bass.size()], "vol": 0.85}
+		if bass[step] != "":
+			row["triangle"] = {"note": bass[step], "vol": 0.85}
+		row["pulse1"] = {"note": chord[step % chord.size()], "duty": 0.5, "vol": 0.30}
 		if step % 4 == 0:
 			row["noise"] = _kick()
 		elif step % 4 == 2:
 			row["noise"] = _hat()
-		## Faint pulse stab on the downbeats to hint at the key
-		if step == 0 or step == 8:
-			row["pulse2"] = {"note": "G4", "duty": 0.125, "vol": 0.4}
+		rows.append(row)
+	return rows
+
+## MAIN THEME A 0:13-0:33
+func _section_main_a() -> Array:
+	var rows: Array = []
+	var lead := [
+		"D5","",  "D5","",  "D#5","", "D5","",   "C5","",  "A#4","", "A4","",  "G4","", \
+		"A#4","", "C5","",  "D5","",  "",  "",    "C5","",  "A#4","", "G4","",  "",  ""
+	]
+	var stab_steps := [6, 14, 22, 30]
+	var bass := _octave_bass(["G2","G2","D#2","D2", "D#2","F2","G2","D2"])
+	for step in range(32):
+		var row: Dictionary = {}
+		if lead[step] != "":
+			row["pulse1"] = {"note": lead[step], "duty": 0.5, "vol": 0.65}
+		if step in stab_steps:
+			row["pulse2"] = {"note": "D6", "duty": 0.125, "vol": 0.4}
+		if bass[step] != "":
+			row["triangle"] = {"note": bass[step], "vol": 0.6}
+		if step % 4 == 0:
+			row["noise"] = _kick()
+		elif step % 4 == 2:
+			row["noise"] = _snare()
+		elif step % 2 == 1:
+			row["noise"] = _hat()
 		rows.append(row)
 	return rows

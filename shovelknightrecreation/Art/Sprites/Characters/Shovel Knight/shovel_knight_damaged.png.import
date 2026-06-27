@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d02oy7pobuax5"
-path="res://.godot/imported/black_knight_idle.png-18c01c670e483c2a548643865007b3dd.ctex"
+uid="uid://bddeegs41qa8p"
+path="res://.godot/imported/shovel_knight_damaged.png-99dadf4acd767dc119d996e509756645.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/Chracters/black_knight_idle.png"
-dest_files=["res://.godot/imported/black_knight_idle.png-18c01c670e483c2a548643865007b3dd.ctex"]
+source_file="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_damaged.png"
+dest_files=["res://.godot/imported/shovel_knight_damaged.png-99dadf4acd767dc119d996e509756645.ctex"]
 
 [params]
 

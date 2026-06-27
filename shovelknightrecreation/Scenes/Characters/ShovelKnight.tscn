@@ -12,6 +12,7 @@ size = Vector2(120, 155)
 [node name="ShovelKnight" type="CharacterBody2D" unique_id=1916602543]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_bcalr")
+attack_group = &"player_attack"
 swing_shape = SubResource("RectangleShape2D_phpyr")
 swing_sfx = ExtResource("2_xdoyt")
 
