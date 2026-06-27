@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b5odb6skbgnpv"]
+
+[ext_resource type="Script" uid="uid://dwnla04b14ku2" path="res://Scripts/Characters/shovel_knight.gd" id="1_bcalr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fvme"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3fvme"]
+specular_color = Color(0.52496964, 0.40284726, 0.41668564, 1)
+
+[node name="ShovelKnight" type="Node2D" unique_id=1007156364]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1691506370]
+script = ExtResource("1_bcalr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=65037009]
+shape = SubResource("RectangleShape2D_3fvme")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=393624408]
+position = Vector2(0.5, -4.7683716e-07)
+scale = Vector2(21, 20)
+texture = SubResource("CanvasTexture_3fvme")

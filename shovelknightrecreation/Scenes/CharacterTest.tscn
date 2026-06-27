@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cpvjjanjnpm60"]
+
+[ext_resource type="PackedScene" uid="uid://b5odb6skbgnpv" path="res://Scenes/Characters/ShovelKnight.tscn" id="1_bwbox"]
+
+[node name="CharacterTest" type="Node2D" unique_id=679980862]
+
+[node name="ShovelKnight" parent="." unique_id=1007156364 instance=ExtResource("1_bwbox")]
+position = Vector2(410, 241)
