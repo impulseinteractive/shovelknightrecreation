@@ -4,7 +4,6 @@ extends CharacterBody2D
 # PHYSICS VARS -------------------------------------------------------------------------------------
 @export_category("Physics")
 @export var ground_friction: float = 900.0    ## The rate at which character speed moves toward 0 
-		## on the ground
 @export var terminal_velocity: float = 1600.0 ## The max fall speed of the knight
 
 # MOVEMENT VARS ------------------------------------------------------------------------------------
