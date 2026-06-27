@@ -21,6 +21,14 @@ var running: bool = false  # Whether the knight is running
 
 var current_health: int           # Current health of the knight
 
+# SHOVEL SWING VARS --------------------------------------------------------------------------------
+@export_category("Shovel Swing")
+@export var swing_shape: Shape2D            # Shape of the shovel swing hitbox
+@export var swing_dmg_start: float = 0.1    # How late into the animation the hitbox appears
+@export var swing_dmg_duration: float = 0.1 # Duration that the hitbox lingers for
+@export var swing_x_offset: float = 80.0    # X position of the hitbox relative to the knight
+@export var swing_y_offset: float = -60.0   # Y position of the hitbox relative to the knight
+
 # --------------------------------------------------------------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,7 +64,12 @@ func run(direction: Vector2, delta: float) -> void:
 # Physics process for shovel swing
 # Starts the shovel swing when shovel swing is input
 func shovel_swing() -> void:
-		print_debug("Shovel Swung")
+	get_tree().create_timer(swing_dmg_start).timeout
+	var hitbox = Hitbox.new("Player Attack", swing_shape, swing_dmg_duration)
+	hitbox.position.x = swing_x_offset
+	hitbox.position.y = swing_y_offset
+	add_child(hitbox)
+	print_debug("Shovel Swung")
 		
 # DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
 # Removes health equal to incoming damage
