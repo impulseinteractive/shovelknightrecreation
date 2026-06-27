@@ -2,18 +2,18 @@ class_name ShovelKnight
 extends Knight
 
 @export_category("Movement")
-@export var pivot_delay: float = 0.1             # How long it takes to start moving after pivoting
+@export var pivot_delay: float = 0.1 ## How long it takes to start moving after pivoting
 
-var pivot_timer: float = 0.0 # Tracks times since pivot started
+var pivot_timer: float = 0.0 ## Tracks times since pivot started
 
 # Movement flags
-var pivoting: bool = false # Whether the knight is pivoting
+var pivoting: bool = false ## Whether the knight is pivoting
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	# MOVEMENT INPUT HANDLING--------------------------------------------------
 	if Input.is_action_pressed("move_left"):

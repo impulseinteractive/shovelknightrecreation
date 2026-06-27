@@ -2,12 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dwnla04b14ku2" path="res://Scripts/Characters/shovel_knight.gd" id="1_bcalr"]
 [ext_resource type="Texture2D" uid="uid://bll54336jkbk1" path="res://Art/Sprites/Chracters/shovel_knight_idle.png" id="2_phpyr"]
+[ext_resource type="AudioStream" uid="uid://cecsoqmxd8g8l" path="res://Audio/SFX_bk_hit.wav" id="2_xdoyt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phpyr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fvme"]
 size = Vector2(120, 155)
 
 [node name="ShovelKnight" type="CharacterBody2D" unique_id=1916602543]
 script = ExtResource("1_bcalr")
+swing_shape = SubResource("RectangleShape2D_phpyr")
+swing_sfx = ExtResource("2_xdoyt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=876146725]
 position = Vector2(-5, -77.5)
