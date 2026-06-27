@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d0cit2h0sykni"]
+
+[ext_resource type="Script" uid="uid://dbp2tytue0ccy" path="res://Scripts/Characters/black_knight.gd" id="1_vuakd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7s2"]
+
+[node name="BlackKnight" type="Node2D" unique_id=197894674]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=117067234]
+script = ExtResource("1_vuakd")
+max_health = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1088113097]
+shape = SubResource("RectangleShape2D_fh7s2")
