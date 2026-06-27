@@ -1,14 +1,17 @@
 class_name Knight
 extends CharacterBody2D
 
+@export_category("Physics")
+@export var ground_friction: float = 900.0 # The rate at which character speed moves toward 0 
+										   # on the ground
+
 # All variables pertaining to character movement
 @export_category("Movement")
-@export var movement_speed: float = 200.0   # Max running speed of the knight
-@export var movement_ramp_up: float = 10.0  # Ramp up speed of knight running
+@export var movement_speed: float = 200.0        # Max running speed of the knight
+@export var movement_acceleration: float = 500.0 # Ramp up speed of knight running
 
-# Tracks previous movement state
-var was_running_right: bool = false
-var was_running_left: bool = false
+# Movement flags
+var running: bool = false  # Whether the knight is running
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,25 +19,25 @@ func _ready() -> void:
 
 # Called every physics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	# Come to a sharp stop when character stops running
+	if not running:
+		velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
+		
 	move_and_slide()
+	# Reset the running flag
+	running = false
 	pass
 
 #MOVEMENT FUNCTIONS --------------------------------------------------------------------------------
 # Character movement function that takes Vector2.LEFT (-1, 0) or Vector2.RIGHT (1, 0) as directional 
 # input
-func run(direction: Vector2) -> void:
-	velocity = velocity.move_toward(direction * movement_speed, movement_ramp_up)
+func run(direction: Vector2, delta: float) -> void:
+	running = true
+	
+	velocity.x = move_toward(velocity.x, movement_speed * direction.x, 
+			movement_acceleration * delta)
 	print_debug("Running at a speed of " + str(velocity))
 		
-	# Stops all left velocity when right input is detected
-	if direction == Vector2.RIGHT:
-		if velocity.x < 0:
-			velocity = Vector2(0, velocity.y)
-	
-	# Stops all right velocity when left input is detected
-	if direction == Vector2.LEFT:
-		if velocity.x > 0:
-			velocity = Vector2(0, velocity.y)	
 	
 # ATTACK FUNCTIONS ---------------------------------------------------------------------------------
 # Physics process for shovel swing
