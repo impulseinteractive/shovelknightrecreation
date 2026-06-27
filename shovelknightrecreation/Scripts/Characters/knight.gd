@@ -16,7 +16,8 @@ var running: bool = false  ## Whether the knight is running
 
 # DAMAGE SYSTEM VARS -------------------------------------------------------------------------------
 @export_category("Health")
-@export var max_health: int = 8.0 ## Max possible health for the knight
+@export var max_health: int = 8.0    ## Max possible health for the knight
+@export var attack_group: StringName ## Name of the group the knight's attacks belongs to
 
 var current_health: int           ## Current health of the knight
 
@@ -74,7 +75,7 @@ func shovel_swing() -> void:
 	
 	# Create the hitbox
 	get_tree().create_timer(swing_dmg_start).timeout
-	var hitbox = Hitbox.new("Player Attack", swing_shape, swing_dmg_duration)
+	var hitbox = Hitbox.new(attack_group, swing_shape, swing_dmg_duration)
 	hitbox.position.x = swing_x_offset
 	hitbox.position.y = swing_y_offset
 	add_child(hitbox)

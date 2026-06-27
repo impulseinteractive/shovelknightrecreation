@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 LevelStateManager="*uid://b1gt4fhdq0bre"
 
+[global_group]
+
+player_attack=""
+enemy_attack=""
+
 [input]
 
 move_right={

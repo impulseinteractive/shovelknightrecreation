@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://cpvjjanjnpm60"]
 
 [ext_resource type="PackedScene" uid="uid://b5odb6skbgnpv" path="res://Scenes/Characters/ShovelKnight.tscn" id="1_bwbox"]
+[ext_resource type="PackedScene" uid="uid://b3hfmcf3cb7kb" path="res://Scenes/environment.tscn" id="2_1jrds"]
+[ext_resource type="PackedScene" uid="uid://d0cit2h0sykni" path="res://Scenes/Characters/BlackKnight.tscn" id="3_fyudc"]
 
 [node name="CharacterTest" type="Node2D" unique_id=679980862]
 
 [node name="ShovelKnight" parent="." unique_id=1007156364 instance=ExtResource("1_bwbox")]
-position = Vector2(410, 241)
+position = Vector2(248, 385)
+
+[node name="Environment" parent="." unique_id=1448139220 groups=["enemy_attack", "player_attack"] instance=ExtResource("2_1jrds")]
+position = Vector2(42, 385)
+
+[node name="BlackKnight" parent="." unique_id=1142707248 instance=ExtResource("3_fyudc")]
+position = Vector2(846, 387)

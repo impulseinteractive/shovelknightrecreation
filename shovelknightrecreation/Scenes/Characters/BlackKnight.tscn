@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dbp2tytue0ccy" path="res://Scripts/Characters/black_knight.gd" id="1_vuakd"]
 [ext_resource type="Texture2D" uid="uid://d02oy7pobuax5" path="res://Art/Sprites/Chracters/black_knight_idle.png" id="2_fh7s2"]
+[ext_resource type="Script" uid="uid://lugw7yd8wuqv" path="res://Scripts/Characters/Attacks/hurtbox.gd" id="3_e1jq7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7s2"]
 size = Vector2(110, 165)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbrs2"]
+size = Vector2(109, 164)
 
 [node name="BlackKnight" type="CharacterBody2D" unique_id=1142707248]
 script = ExtResource("1_vuakd")
@@ -18,3 +22,14 @@ position = Vector2(-80, -215)
 scale = Vector2(5, 5)
 texture = ExtResource("2_fh7s2")
 centered = false
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=66175329]
+collision_layer = 1073741824
+collision_mask = 2147483648
+script = ExtResource("3_e1jq7")
+monitored_group = &"player_attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=586711827]
+position = Vector2(-14.5, -82)
+shape = SubResource("RectangleShape2D_wbrs2")
+debug_color = Color(0.79733616, 0.40304694, 0.33685336, 0.41960785)
