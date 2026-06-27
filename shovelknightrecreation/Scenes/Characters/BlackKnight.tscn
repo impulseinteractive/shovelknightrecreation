@@ -11,6 +11,7 @@ size = Vector2(110, 165)
 size = Vector2(109, 164)
 
 [node name="BlackKnight" type="CharacterBody2D" unique_id=1142707248]
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_vuakd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2082938975]
