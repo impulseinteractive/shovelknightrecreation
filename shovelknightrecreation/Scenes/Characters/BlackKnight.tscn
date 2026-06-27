@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://bdehpd46ysm1v"]
+[gd_scene format=3 uid="uid://ck8wtngxe1a0k"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/black_knight.gd" id="1_vuakd"]
 [ext_resource type="Texture2D" uid="uid://d5r0vemtnv4p" path="res://Art/Sprites/black_knight_idle.png" id="2_fh7s2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7s2"]
+size = Vector2(110, 165)
 
 [node name="BlackKnight" type="Node2D" unique_id=197894674]
 
@@ -12,9 +13,11 @@ script = ExtResource("1_vuakd")
 max_health = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1088113097]
+position = Vector2(-15, -82.5)
 shape = SubResource("RectangleShape2D_fh7s2")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=299272627]
-position = Vector2(0.5, 0)
-scale = Vector2(20, 20)
+position = Vector2(-80, -215)
+scale = Vector2(5, 5)
 texture = ExtResource("2_fh7s2")
+centered = false

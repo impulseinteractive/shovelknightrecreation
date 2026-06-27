@@ -4,20 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://ckaukangh8jug" path="res://Art/Sprites/shovel_knight_idle.png" id="2_phpyr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fvme"]
+size = Vector2(120, 155)
 
 [node name="ShovelKnight" type="Node2D" unique_id=1007156364]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1691506370]
 script = ExtResource("1_bcalr")
-pivot_delay = null
-ground_friction = null
-movement_speed = null
-movement_acceleration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=65037009]
+position = Vector2(-5, -77.5)
 shape = SubResource("RectangleShape2D_3fvme")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=393624408]
-position = Vector2(0.5, -4.7683716e-07)
-scale = Vector2(21, 20)
+position = Vector2(-85, -155)
+scale = Vector2(5, 5)
 texture = ExtResource("2_phpyr")
+centered = false
