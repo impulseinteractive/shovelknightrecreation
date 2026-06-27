@@ -18,13 +18,15 @@ var LEVEL_STATE: LevelState
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	LEVEL_STATE = LevelState.INITIAL
 	state_changed.connect(on_state_changed)
+
+	LEVEL_STATE = LevelState.INITIAL
+	state_entered.emit(LevelState.INITIAL)
 	return
 
 
 func on_state_changed(new_state: LevelState):
 	state_exited.emit(LEVEL_STATE)
 	LEVEL_STATE = new_state
-	state_entered.emit(LEVEL_STATE)
+	state_entered.emit(new_state)
 	return

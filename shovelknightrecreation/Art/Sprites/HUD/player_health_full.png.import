@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d5r0vemtnv4p"
-path="res://.godot/imported/black_knight_idle.png-6fb0ddc094665cec961f2cdf0a4b6c16.ctex"
+uid="uid://y4j4bea0wl8h"
+path="res://.godot/imported/player_health_full.png-09c7fa075d7d11f7341082fbdb950869.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/black_knight_idle.png"
-dest_files=["res://.godot/imported/black_knight_idle.png-6fb0ddc094665cec961f2cdf0a4b6c16.ctex"]
+source_file="res://Art/Sprites/HUD/player_health_full.png"
+dest_files=["res://.godot/imported/player_health_full.png-09c7fa075d7d11f7341082fbdb950869.ctex"]
 
 [params]
 

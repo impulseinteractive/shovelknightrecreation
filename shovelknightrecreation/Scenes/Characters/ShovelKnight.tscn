@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b5odb6skbgnpv"]
 
 [ext_resource type="Script" uid="uid://dwnla04b14ku2" path="res://Scripts/Characters/shovel_knight.gd" id="1_bcalr"]
-[ext_resource type="Texture2D" uid="uid://ckaukangh8jug" path="res://Art/Sprites/shovel_knight_idle.png" id="2_phpyr"]
+[ext_resource type="Texture2D" uid="uid://bll54336jkbk1" path="res://Art/Sprites/Chracters/shovel_knight_idle.png" id="2_phpyr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fvme"]
 size = Vector2(120, 155)
