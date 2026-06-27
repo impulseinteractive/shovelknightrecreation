@@ -27,6 +27,7 @@ var current_health: int           ## Current health of the knight
 @export var swing_dmg_duration: float = 0.1 ## Duration that the hitbox lingers for
 @export var swing_x_offset: float = 80.0    ## X position of the hitbox relative to the knight
 @export var swing_y_offset: float = -60.0   ## Y position of the hitbox relative to the knight
+@export var swing_sfx: AudioStream          ## Sound effect for the shovel swing
 
 # --------------------------------------------------------------------------------------------------
 ## Called when the node enters the scene tree for the first time.
@@ -62,12 +63,27 @@ func run(direction: Vector2, delta: float) -> void:
 ## Physics process for shovel swing
 ## Starts the shovel swing when shovel swing is input
 func shovel_swing() -> void:
+	# Play the sound effect
+	var sfx = AudioStreamPlayer.new()
+	if swing_sfx:
+		add_child(sfx)
+		
+		sfx.stream = swing_sfx
+		
+		sfx.play()
+	
+	# Create the hitbox
 	get_tree().create_timer(swing_dmg_start).timeout
 	var hitbox = Hitbox.new("Player Attack", swing_shape, swing_dmg_duration)
 	hitbox.position.x = swing_x_offset
 	hitbox.position.y = swing_y_offset
 	add_child(hitbox)
+	
+	# Swing shovel
 	print_debug("Shovel Swung")
+	
+	await sfx.finished
+	sfx.queue_free()
 		
 # DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
 ## Removes health equal to incoming damage
