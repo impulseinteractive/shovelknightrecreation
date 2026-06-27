@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b3hfmcf3cb7kb" path="res://Scenes/environment.tscn" id="1_r7jfx"]
 [ext_resource type="PackedScene" uid="uid://b5odb6skbgnpv" path="res://Scenes/Characters/ShovelKnight.tscn" id="3_c77c4"]
 [ext_resource type="PackedScene" uid="uid://ck8wtngxe1a0k" path="res://Scenes/Characters/BlackKnight.tscn" id="3_o15vh"]
+[ext_resource type="PackedScene" uid="uid://ckq5iqbgmb2us" path="res://Scenes/LevelStartupPrompt.tscn" id="4_o15vh"]
 
 [node name="MainLevel" type="Node2D" unique_id=996745347]
 
@@ -14,3 +15,7 @@ position = Vector2(0, 552)
 
 [node name="BlackKnight" parent="." unique_id=197894674 instance=ExtResource("3_o15vh")]
 position = Vector2(976, 552)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=898548762]
+
+[node name="LevelStartupPrompt" parent="CanvasLayer" unique_id=156246579 instance=ExtResource("4_o15vh")]

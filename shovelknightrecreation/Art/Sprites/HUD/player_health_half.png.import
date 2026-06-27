@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckaukangh8jug"
-path="res://.godot/imported/shovel_knight_idle.png-ef39122508c389a33701c289b3b0be2a.ctex"
+uid="uid://ckydttxo4w5db"
+path="res://.godot/imported/player_health_half.png-94c17109fe04a3e507e1119ae2b43195.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/shovel_knight_idle.png"
-dest_files=["res://.godot/imported/shovel_knight_idle.png-ef39122508c389a33701c289b3b0be2a.ctex"]
+source_file="res://Art/Sprites/HUD/player_health_half.png"
+dest_files=["res://.godot/imported/player_health_half.png-94c17109fe04a3e507e1119ae2b43195.ctex"]
 
 [params]
 
