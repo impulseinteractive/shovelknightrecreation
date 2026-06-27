@@ -2,11 +2,11 @@ class_name BlackKnight
 extends Knight
 
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Debugging actions for health functions
 	if Input.is_action_just_pressed("move_left"):
@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	
 	pass
 	
-# Handles movement input for the Black Knight
+## Handles movement input for the Black Knight
 func run(direction: Vector2, delta: float) -> void:
 	super(direction, delta)
 	

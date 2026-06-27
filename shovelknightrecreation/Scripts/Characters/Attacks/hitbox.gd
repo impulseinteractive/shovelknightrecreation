@@ -6,7 +6,7 @@ var lifetime: float 				  # Total time the hitbox exists in the scene
 var shape: Shape2D  				  # Shape of the hitbox
 var collision_shape: CollisionShape2D # The hitbox itself
 
-# Initialize the hitbox
+## Initialize the hitbox
 func _init(_group: String, _shape: Shape2D, _lifetime: float = 0.0) -> void:
 	group = _group
 	shape = _shape
@@ -32,12 +32,12 @@ func _init(_group: String, _shape: Shape2D, _lifetime: float = 0.0) -> void:
 	set_collision_mask_value(31, true)
 	add_to_group(group)
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	monitorable = false
 	area_entered.connect(_on_area_entered)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
