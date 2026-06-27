@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bcqgav0y3ruo"]
 
-[ext_resource type="PackedScene" uid="uid://b3hfmcf3cb7kb" path="res://Art/Sprites/Environment/environment.tscn" id="1_r7jfx"]
+[ext_resource type="PackedScene" uid="uid://b3hfmcf3cb7kb" path="res://Scenes/environment.tscn" id="1_r7jfx"]
 [ext_resource type="PackedScene" uid="uid://b5odb6skbgnpv" path="res://Scenes/Characters/ShovelKnight.tscn" id="3_c77c4"]
 [ext_resource type="PackedScene" uid="uid://ck8wtngxe1a0k" path="res://Scenes/Characters/BlackKnight.tscn" id="3_o15vh"]
 
 [node name="MainLevel" type="Node2D" unique_id=996745347]
 
 [node name="ShovelKnight" parent="." unique_id=1007156364 instance=ExtResource("3_c77c4")]
-position = Vector2(104, 552)
+position = Vector2(112, 552)
 
 [node name="Environment" parent="." unique_id=1448139220 instance=ExtResource("1_r7jfx")]
 position = Vector2(0, 552)
