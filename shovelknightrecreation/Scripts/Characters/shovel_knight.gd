@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	pass
 	
-# Handles movement input for the Shovel Knight
+## Handles movement input for the Shovel Knight
 func run(direction: Vector2, delta: float):
 	if not pivoting:
 		super(direction, delta)
