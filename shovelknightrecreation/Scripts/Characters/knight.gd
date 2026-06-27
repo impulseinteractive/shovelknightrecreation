@@ -3,8 +3,9 @@ extends CharacterBody2D
 
 # PHYSICS VARS -------------------------------------------------------------------------------------
 @export_category("Physics")
-@export var ground_friction: float = 900.0 # The rate at which character speed moves toward 0 
-										   # on the ground
+@export var ground_friction: float = 900.0    # The rate at which character speed moves toward 0 
+											  # on the ground
+@export var terminal_velocity: float = 1600.0 # The max fall speed of the knight
 
 # MOVEMENT VARS ------------------------------------------------------------------------------------
 @export_category("Movement")
@@ -31,6 +32,9 @@ func _physics_process(delta: float) -> void:
 	# Come to a sharp stop when character stops running
 	if not running:
 		velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
+		
+	# Handle gravity's effect on the knight
+	velocity.y = move_toward(velocity.y, terminal_velocity, get_gravity().y * delta)
 		
 	move_and_slide()
 	# Reset the running flag
