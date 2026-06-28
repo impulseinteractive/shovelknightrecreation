@@ -1,38 +1,54 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://d5ojgjlcor3h"]
 
-[ext_resource type="Texture2D" uid="uid://1yflyastlrk2" path="res://Art/Animations/Shovel Knight/shovel_knight_damaged.png" id="1_72pmi"]
 [ext_resource type="Texture2D" uid="uid://cm87itje8k3tn" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.png" id="1_y4isl"]
-[ext_resource type="Texture2D" uid="uid://cq1b1ipgcu5e0" path="res://shovel_knight_swing.png" id="2_72pmi"]
+[ext_resource type="Texture2D" uid="uid://bipg246rwq6a" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_pivot.png" id="2_445pa"]
+[ext_resource type="Texture2D" uid="uid://1iiot5sey6gw" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_run.png" id="2_y4isl"]
+[ext_resource type="Texture2D" uid="uid://cq1b1ipgcu5e0" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_swing.png" id="3_72pmi"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_72pmi"]
+load_path = "res://.godot/imported/shovel_knight_damaged.png-54a183ddb2e613353aa3fde139a8f282.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78yum"]
 atlas = ExtResource("1_y4isl")
 region = Rect2(0, 0, 75, 75)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_va1ym"]
-atlas = ExtResource("2_72pmi")
+[sub_resource type="AtlasTexture" id="AtlasTexture_445pa"]
+atlas = ExtResource("2_y4isl")
 region = Rect2(0, 0, 75, 75)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2lmyq"]
-atlas = ExtResource("2_72pmi")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl6un"]
+atlas = ExtResource("2_y4isl")
 region = Rect2(75, 0, 75, 75)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5w624"]
-atlas = ExtResource("2_72pmi")
-region = Rect2(150, 0, 75, 75)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e2pq1"]
-atlas = ExtResource("2_72pmi")
+[sub_resource type="AtlasTexture" id="AtlasTexture_knslp"]
+atlas = ExtResource("2_y4isl")
 region = Rect2(0, 75, 75, 75)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mbq85"]
-atlas = ExtResource("2_72pmi")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjg0e"]
+atlas = ExtResource("3_72pmi")
+region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5h6u"]
+atlas = ExtResource("3_72pmi")
+region = Rect2(75, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbb7b"]
+atlas = ExtResource("3_72pmi")
+region = Rect2(150, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re7no"]
+atlas = ExtResource("3_72pmi")
+region = Rect2(0, 75, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcjdf"]
+atlas = ExtResource("3_72pmi")
 region = Rect2(75, 75, 75, 75)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_72pmi")
+"texture": SubResource("CompressedTexture2D_72pmi")
 }],
 "loop": true,
 "name": &"damaged",
@@ -42,25 +58,47 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_78yum")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_va1ym")
+"texture": ExtResource("2_445pa")
+}],
+"loop": false,
+"name": &"pivot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_445pa")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2lmyq")
+"texture": SubResource("AtlasTexture_wl6un")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5w624")
+"texture": SubResource("AtlasTexture_knslp")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjg0e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e2pq1")
+"texture": SubResource("AtlasTexture_g5h6u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mbq85")
+"texture": SubResource("AtlasTexture_rbb7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re7no")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcjdf")
 }],
 "loop": false,
 "name": &"shovel swing",

@@ -9,20 +9,20 @@ var contact_hitboxes: Dictionary[String, Hitbox] = {}
 
 var contact_hitbox_x: Dictionary[String, float] = {}
 
-## Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.s
 func _ready() -> void:
-	if has_node("ContactHitboxUp") and get_node("ContactHitboxUp") is Hitbox:
-		contact_hitboxes["up"] = $ContactHitboxUp
+	if find_child("ContactHitboxUp") is Hitbox:
+		contact_hitboxes["up"] = find_child("ContactHitboxUp")
 		if contact_hitboxes["up"] is Hitbox:
 			contact_hitboxes["up"].attack_direction = Vector2.UP
-	if has_node("ContactHitboxLeft") and get_node("ContactHitboxLeft") is Hitbox:
-		contact_hitboxes["left"] = $ContactHitboxLeft
+	if find_child("ContactHitboxLeft") is Hitbox:
+		contact_hitboxes["left"] = find_child("ContactHitboxLeft")
 		contact_hitboxes["left"].attack_direction = Vector2.LEFT
-	if has_node("ContactHitboxRight") and get_node("ContactHitboxRight") is Hitbox:
-		contact_hitboxes["right"] = $ContactHitboxRight
+	if find_child("ContactHitboxRight") is Hitbox:
+		contact_hitboxes["right"] = find_child("ContactHitboxRight")
 		contact_hitboxes["right"].attack_direction = Vector2.RIGHT
-	if has_node("ContactHitboxDown") and get_node("ContactHitboxDown") is Hitbox:
-		contact_hitboxes["down"] = $ContactHitboxDown
+	if find_child("ContactHitboxDown") is Hitbox:
+		contact_hitboxes["down"] = find_child("ContactHitboxDown")
 		contact_hitboxes["down"].attack_direction = Vector2.DOWN
 		
 	for hb in contact_hitboxes:
@@ -50,7 +50,7 @@ func run(direction: Vector2, delta: float) -> void:
 				or (direction == Vector2.LEFT and velocity.x > 0):
 				velocity = Vector2(0, velocity.y)	
 			
-# DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
+# COMBAT FUNCTIONS ---------------------------------------------------------------------------------
 ## Broadcasts success state on Black Knight death
 func death() -> void:
 	level_manager.state_changed.emit(LevelStateManager.LevelState.LEVEL_SUCCESS)

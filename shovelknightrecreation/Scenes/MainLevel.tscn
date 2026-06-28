@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d0cit2h0sykni" path="res://Scenes/Characters/BlackKnight.tscn" id="3_o15vh"]
 [ext_resource type="PackedScene" uid="uid://ckq5iqbgmb2us" path="res://Scenes/UI/LevelStartupPrompt.tscn" id="4_o15vh"]
 [ext_resource type="PackedScene" uid="uid://2ceuiludk3bg" path="res://Scenes/UI/health_ui.tscn" id="5_ymtjv"]
+[ext_resource type="PackedScene" uid="uid://b5uhqfkiln51c" path="res://Scenes/BattleOST.tscn" id="6_2a20n"]
 
 [node name="MainLevel" type="Node2D" unique_id=996745347]
 
@@ -28,5 +29,7 @@ player_ref = NodePath("../../../../ShovelKnight")
 
 [node name="BossLife" parent="CanvasLayer/HealthUI/BossContainer" parent_id_path=PackedInt32Array(146945874, 1497525335) index="1" unique_id=282792983 node_paths=PackedStringArray("boss_ref")]
 boss_ref = NodePath("../../../../BlackKnight")
+
+[node name="BattleOst" parent="." unique_id=2085213165 instance=ExtResource("6_2a20n")]
 
 [editable path="CanvasLayer/HealthUI"]
