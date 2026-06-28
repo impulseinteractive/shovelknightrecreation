@@ -26,6 +26,7 @@ var running: bool = false ## Whether the knight is running
 var current_health: int               ## Current health of the knight
 var lock_input: bool = false          ## Stops new inputs from being processed
 var interrupt_mechanics: bool = false ## Stops any currently running mechanics
+var damaged: bool = false             ## Whether the knight is currently in damaged state
 
 # SHOVEL SWING VARS --------------------------------------------------------------------------------
 @export_category("Shovel Swing")
@@ -42,12 +43,19 @@ var interrupt_mechanics: bool = false ## Stops any currently running mechanics
 @export_category("Visuals")
 @export var idle_pose: Texture2D    ## Pose for when no actions are occurring
 @export var damaged_pose: Texture2D ## Pose for when the knight is damaged
+var sprite_ref#: AnimatedSprite2D    ## Reference to the sprite component
 
 signal on_health_changed(new_health: int)
 
 # --------------------------------------------------------------------------------------------------
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if has_node("AnimatedSprite2D"):
+		sprite_ref = $AnimatedSprite2D
+	# Uses sprite until animated sprite is added
+	else:
+		sprite_ref = $Sprite2D
+		
 	collision_shape_x = $CollisionShape2D.position.x
 	current_health = max_health
 	print_debug(name + " Health set to " + str(current_health))
@@ -71,11 +79,15 @@ func _physics_process(delta: float) -> void:
 	
 	# Flip necessary components when character turns around
 	if look_direction == Vector2.LEFT:
-		$Sprite2D.flip_h = true
+		sprite_ref.flip_h = true
 		$CollisionShape2D.position.x = -collision_shape_x
 	else:
-		$Sprite2D.flip_h = false
+		sprite_ref.flip_h = false
 		$CollisionShape2D.position.x = collision_shape_x
+		
+	# Return to idle pose when no other actions are happening
+	if not damaged:
+		sprite_ref.texture = idle_pose
 		
 ## Resolve all inputs in this function
 func handle_input(delta: float) -> void:
@@ -121,6 +133,8 @@ func take_damage() -> void:
 	# Lock inputs and interrupt mechanics
 	lock_input = true
 	interrupt_mechanics = true
+	damaged = true
+	sprite_ref.texture = damaged_pose
 	
 	# Play damage sound and decrement health
 	print_debug(name + " Damage taken")
@@ -132,6 +146,7 @@ func take_damage() -> void:
 	await get_tree().create_timer(damaged_duration).timeout
 	lock_input = false
 	interrupt_mechanics = false
+	damaged = false
 	
 	
 ## Pushes the player back depending on given direction
