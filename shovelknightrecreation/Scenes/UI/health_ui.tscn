@@ -15,12 +15,15 @@ grow_vertical = 2
 
 [node name="PlayerContainer" type="VBoxContainer" parent="." unique_id=49150145]
 layout_mode = 1
-offset_right = 45.0
-offset_bottom = 40.0
+offset_left = 200.0
+offset_top = 20.0
+offset_right = 400.0
+offset_bottom = 60.0
 
 [node name="TextureRect" type="TextureRect" parent="PlayerContainer" unique_id=1260445003]
 layout_mode = 2
 texture = ExtResource("1_jbv2o")
+stretch_mode = 2
 
 [node name="PlayerLife" parent="PlayerContainer" unique_id=6645311 instance=ExtResource("2_bqrld")]
 layout_mode = 2
@@ -30,13 +33,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -45.0
-offset_bottom = 40.0
+offset_left = -245.0
+offset_top = 20.0
+offset_right = -45.0
+offset_bottom = 60.0
 grow_horizontal = 0
 
 [node name="TextureRect" type="TextureRect" parent="BossContainer" unique_id=481900363]
 layout_mode = 2
 texture = ExtResource("3_bqrld")
+stretch_mode = 2
 
 [node name="BossLife" parent="BossContainer" unique_id=282792983 instance=ExtResource("4_okcpi")]
 layout_mode = 2

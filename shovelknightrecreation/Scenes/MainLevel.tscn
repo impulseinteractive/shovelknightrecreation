@@ -8,7 +8,7 @@
 
 [node name="MainLevel" type="Node2D" unique_id=996745347]
 
-[node name="ShovelKnight" parent="." unique_id=1007156364 instance=ExtResource("3_c77c4")]
+[node name="ShovelKnight" parent="." unique_id=1007156364 groups=["player"] instance=ExtResource("3_c77c4")]
 position = Vector2(256, 624)
 
 [node name="Environment" parent="." unique_id=1448139220 instance=ExtResource("1_r7jfx")]
