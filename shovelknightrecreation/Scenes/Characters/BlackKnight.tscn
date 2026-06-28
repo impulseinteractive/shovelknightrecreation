@@ -6,16 +6,30 @@
 [ext_resource type="AudioStream" uid="uid://cir5s665uefsv" path="res://Audio/SFX_shovel_swing.wav" id="3_6vsk3"]
 [ext_resource type="Script" uid="uid://lugw7yd8wuqv" path="res://Scripts/Characters/Attacks/hurtbox.gd" id="3_e1jq7"]
 [ext_resource type="PackedScene" uid="uid://ckms3743k0u6i" path="res://Scenes/SfxController.tscn" id="4_wbrs2"]
+[ext_resource type="Script" uid="uid://bmkdlfexxkvsn" path="res://Scripts/Characters/Attacks/hitbox.gd" id="7_6vsk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7s2"]
 size = Vector2(110, 165)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbrs2"]
-size = Vector2(109, 164)
+size = Vector2(110, 165)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vsk3"]
+size = Vector2(106.66666, 3.3333282)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04htf"]
+size = Vector2(3.3333325, 168.33333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26q1u"]
+size = Vector2(3.333334, 168.33331)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwfnn"]
+size = Vector2(106.66666, 3.3333333)
 
 [node name="BlackKnight" type="CharacterBody2D" unique_id=1142707248]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_vuakd")
+contact_knockback = 300.0
 movement_speed = 300.0
 damaged_sfx = ExtResource("2_a1tgm")
 swing_sfx = ExtResource("3_6vsk3")
@@ -37,8 +51,55 @@ script = ExtResource("3_e1jq7")
 monitored_group = &"player_attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=586711827]
-position = Vector2(-14.5, -82)
+position = Vector2(-15.000001, -82.50001)
 shape = SubResource("RectangleShape2D_wbrs2")
 debug_color = Color(0.79733616, 0.40304694, 0.33685336, 0.41960785)
 
 [node name="SfxController" parent="." unique_id=708739224 instance=ExtResource("4_wbrs2")]
+
+[node name="ContactHitboxUp" type="Area2D" parent="." unique_id=606666066 groups=["enemy_attack"]]
+collision_layer = 2147483648
+collision_mask = 0
+script = ExtResource("7_6vsk3")
+group = &"enemy_attack"
+metadata/_custom_type_script = "uid://bmkdlfexxkvsn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitboxUp" unique_id=429002152]
+position = Vector2(-15, -165.00002)
+shape = SubResource("RectangleShape2D_6vsk3")
+debug_color = Color(0.86920637, 0.18200374, 0.74174875, 0.41960785)
+
+[node name="ContactHitboxLeft" type="Area2D" parent="." unique_id=1456548915 groups=["enemy_attack"]]
+collision_layer = 2147483648
+collision_mask = 0
+script = ExtResource("7_6vsk3")
+group = &"enemy_attack"
+metadata/_custom_type_script = "uid://bmkdlfexxkvsn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitboxLeft" unique_id=64409446]
+position = Vector2(-70, -82.50001)
+shape = SubResource("RectangleShape2D_04htf")
+debug_color = Color(0.8812039, 0.24734345, 0.58447146, 0.41960785)
+
+[node name="ContactHitboxRight" type="Area2D" parent="." unique_id=772084461 groups=["enemy_attack"]]
+collision_layer = 2147483648
+collision_mask = 0
+script = ExtResource("7_6vsk3")
+group = &"enemy_attack"
+metadata/_custom_type_script = "uid://bmkdlfexxkvsn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitboxRight" unique_id=1979969080]
+position = Vector2(40, -82.50001)
+shape = SubResource("RectangleShape2D_26q1u")
+debug_color = Color(0.8469844, 0.2960085, 0.59959066, 0.41960785)
+
+[node name="ContactHitboxDown" type="Area2D" parent="." unique_id=1082006819 groups=["enemy_attack"]]
+collision_layer = 2147483648
+collision_mask = 0
+script = ExtResource("7_6vsk3")
+metadata/_custom_type_script = "uid://bmkdlfexxkvsn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitboxDown" unique_id=533922242]
+position = Vector2(-14.999996, 0)
+shape = SubResource("RectangleShape2D_gwfnn")
+debug_color = Color(0.8651132, 0.25426182, 0.6341614, 0.41960785)
