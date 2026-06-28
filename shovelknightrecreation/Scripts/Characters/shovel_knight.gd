@@ -9,6 +9,9 @@ var pivot_timer: float = 0.0 ## Tracks times since pivot started
 # Movement flags
 var pivoting: bool = false ## Whether the knight is pivoting
 
+signal on_player_health_changed(new_health: int)
+#---------------------------------------------------------------------------------------------------
+
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
@@ -32,6 +35,7 @@ func handle_input(delta: float) -> void:
 	if Input.is_action_just_pressed("crouch"):
 		print_debug("Crouch")
 	
+# MOVEMENT FUNCTIONS -------------------------------------------------------------------------------
 ## Handles movement input for the Shovel Knight
 func run(direction: Vector2, delta: float):
 	if not pivoting:
@@ -48,3 +52,8 @@ func run(direction: Vector2, delta: float):
 		
 		if pivot_timer >= pivot_delay:
 			pivoting = false
+			
+# DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
+func take_damage() -> void:
+	super()
+	on_player_health_changed.emit(current_health)
