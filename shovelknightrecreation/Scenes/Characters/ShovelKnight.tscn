@@ -4,10 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://bll54336jkbk1" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.png" id="2_phpyr"]
 [ext_resource type="AudioStream" uid="uid://cir5s665uefsv" path="res://Audio/SFX_shovel_swing.wav" id="2_xdoyt"]
 [ext_resource type="PackedScene" uid="uid://ckms3743k0u6i" path="res://Scenes/SfxController.tscn" id="4_syip6"]
+[ext_resource type="Script" uid="uid://lugw7yd8wuqv" path="res://Scripts/Characters/Attacks/hurtbox.gd" id="5_yebmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phpyr"]
+size = Vector2(30, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fvme"]
+size = Vector2(120, 155)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymhp6"]
 size = Vector2(120, 155)
 
 [node name="ShovelKnight" type="CharacterBody2D" unique_id=1916602543]
@@ -15,6 +20,9 @@ scale = Vector2(0.6, 0.6)
 script = ExtResource("1_bcalr")
 attack_group = &"player_attack"
 swing_shape = SubResource("RectangleShape2D_phpyr")
+swing_enemy_knockback = 300.0
+swing_self_knockback = 300.0
+swing_x_offset = 100.0
 swing_sfx = ExtResource("2_xdoyt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=876146725]
@@ -28,3 +36,15 @@ texture = ExtResource("2_phpyr")
 centered = false
 
 [node name="SfxController" parent="." unique_id=708739224 instance=ExtResource("4_syip6")]
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=363010613]
+collision_layer = 1073741824
+collision_mask = 2147483648
+script = ExtResource("5_yebmr")
+monitored_group = &"enemy_attack"
+metadata/_custom_type_script = "uid://lugw7yd8wuqv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1014594043]
+position = Vector2(-5.000003, -77.50001)
+shape = SubResource("RectangleShape2D_ymhp6")
+debug_color = Color(0.87477976, 0.3321475, 0.2584936, 0.41960785)

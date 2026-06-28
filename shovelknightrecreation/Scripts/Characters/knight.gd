@@ -67,7 +67,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		$Sprite2D.flip_h = false
 		$CollisionShape2D.position.x = collision_shape_x
-	pass
 
 #MOVEMENT FUNCTIONS --------------------------------------------------------------------------------
 ## Character movement function that takes Vector2.LEFT (-1, 0) or Vector2.RIGHT (1, 0) as directional
