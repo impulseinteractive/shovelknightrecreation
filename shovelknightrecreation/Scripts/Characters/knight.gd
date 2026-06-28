@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export_category("Physics")
 @export var ground_friction: float = 900.0    ## The rate at which character speed moves toward 0 
 @export var terminal_velocity: float = 1600.0 ## The max fall speed of the knight
+var collision_shape_x: float                   ## default x pos of the collision shape
 
 # MOVEMENT VARS ------------------------------------------------------------------------------------
 @export_category("Movement")
@@ -13,13 +14,14 @@ extends CharacterBody2D
 @export var look_direction: Vector2 = Vector2.RIGHT ## The direction the knight is looking
 
 # Movement flags
-var running: bool = false                        ## Whether the knight is running
+var running: bool = false ## Whether the knight is running
 
 # COMBAT VARS --------------------------------------------------------------------------------------
 @export_category("Combat")
 @export var max_health: int = 8.0    ## Max possible health for the knight
 @export var knockback_y_ratio = 0.8  ## Portion of knockback applied vertically on horizontal attacks 
 @export var attack_group: StringName ## Name of the group the knight's attacks belongs to
+@export var damaged_duration: float = 0.5 ## Duration of damage effect on player
 
 var current_health: int              ## Current health of the knight
 
@@ -34,9 +36,15 @@ var current_health: int              ## Current health of the knight
 @export var swing_y_offset: float = -60.0        ## Y position of the hitbox relative to the knight
 @export var swing_sfx: AudioStream               ## Sound effect for the shovel swing
 
+# SPRITE VARS --------------------------------------------------------------------------------------
+@export_category("Visuals")
+@export var idle_pose: Texture2D    ## Pose for when no actions are occurring
+@export var damaged_pose: Texture2D ## Pose for when the knight is damaged
+
 # --------------------------------------------------------------------------------------------------
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	collision_shape_x = $CollisionShape2D.position.x
 	current_health = max_health
 	print_debug(name + " Health set to " + str(current_health))
 
@@ -52,6 +60,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	# Reset the running flag
 	running = false
+	if look_direction == Vector2.LEFT:
+		$Sprite2D.flip_h = true
+		$CollisionShape2D.position.x = -collision_shape_x
+	else:
+		$Sprite2D.flip_h = false
+		$CollisionShape2D.position.x = collision_shape_x
 	pass
 
 #MOVEMENT FUNCTIONS --------------------------------------------------------------------------------
@@ -61,6 +75,7 @@ func run(direction: Vector2, delta: float) -> void:
 	
 	velocity.x = move_toward(velocity.x, movement_speed * direction.x, 
 			movement_acceleration * delta)
+	
 	look_direction = direction
 
 # ATTACK FUNCTIONS ---------------------------------------------------------------------------------
