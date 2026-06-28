@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://x0uv13pr25rx"
+path="res://.godot/imported/GrassHill.aseprite-655c394191ada9d1debc75ac2cf0c7dc.res"
+
+[deps]
+
+source_file="res://Art/Sprites/Environment/GrassHill.aseprite"
+dest_files=["res://.godot/imported/GrassHill.aseprite-655c394191ada9d1debc75ac2cf0c7dc.res"]
+
+[params]
+
