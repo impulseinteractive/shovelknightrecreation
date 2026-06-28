@@ -28,5 +28,6 @@ func _ready() -> void:
 func on_state_changed(new_state: LevelState):
 	state_exited.emit(LEVEL_STATE)
 	LEVEL_STATE = new_state
+	print_debug("State is now " + str(new_state))
 	state_entered.emit(new_state)
 	return

@@ -1,6 +1,8 @@
 class_name Knight
 extends CharacterBody2D
 
+@onready var level_manager = LevelStateManager
+
 # PHYSICS VARS -------------------------------------------------------------------------------------
 @export_category("Physics")
 @export var ground_friction: float = 1200.0   ## The rate at which character speed moves toward 0 
@@ -123,7 +125,6 @@ func shovel_swing() -> void:
 	
 	#reenable input when attack fades
 	sprite_ref.animation_finished.connect(handle_swing_finished)
-	print_debug(name + " Shovel Swung")
 	
 func handle_swing_finished() -> void:
 	lock_input = false
@@ -145,6 +146,8 @@ func take_damage() -> void:
 	$SfxController.play(damaged_sfx)
 	current_health -= 1
 	on_health_changed.emit(current_health)
+	if current_health <= 0:
+		death()
 	
 	# Reenable input and mechanics after a delay
 	await get_tree().create_timer(damaged_duration).timeout
@@ -152,6 +155,9 @@ func take_damage() -> void:
 	interrupt_mechanics = false
 	is_damaged = false
 	
+## Handles the knight's death when current health hits 0
+func death() -> void:
+	pass
 	
 ## Pushes the player back depending on given direction
 func take_knockback(knockback: float, direction: Vector2) -> void:

@@ -56,10 +56,13 @@ func run(direction: Vector2, delta: float) -> void:
 			pivoting = false
 			
 # DAMAGE SYSTEM FUNCTION ---------------------------------------------------------------------------
+## Gives invulnerability frames when Shovel Knight takes damage
 func take_damage() -> void:
 	hurtbox_ref.set_deferred("monitoring", false)
-	print_debug("not monitoring")
 	super()
 	await get_tree().create_timer(damaged_duration).timeout
 	hurtbox_ref.set_deferred("monitoring", true)
-	print_debug("monitoring")
+	
+## Broadcasts fail state on Shovel Knight death
+func death() -> void:
+	level_manager.state_changed.emit(LevelStateManager.LevelState.LEVEL_FAILURE)

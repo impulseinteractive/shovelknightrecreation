@@ -40,7 +40,7 @@ func handle_input(delta: float) -> void:
 	# Debug action for restoring health
 	if Input.is_action_just_pressed("crouch"):
 		restore_to_full_health(0.2)
-# MOVEMENT FUNCTION --------------------------------------------------------------------------------
+# MOVEMENT FUNCTIONS -------------------------------------------------------------------------------
 ## Handles movement input for the Black Knight
 func run(direction: Vector2, delta: float) -> void:
 	super(direction, delta)
@@ -49,3 +49,8 @@ func run(direction: Vector2, delta: float) -> void:
 	if (direction == Vector2.RIGHT and velocity.x < 0) \
 				or (direction == Vector2.LEFT and velocity.x > 0):
 				velocity = Vector2(0, velocity.y)	
+			
+# DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
+## Broadcasts success state on Black Knight death
+func death() -> void:
+	level_manager.state_changed.emit(LevelStateManager.LevelState.LEVEL_SUCCESS)
