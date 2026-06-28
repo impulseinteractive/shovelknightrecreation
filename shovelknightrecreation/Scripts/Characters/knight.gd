@@ -5,14 +5,15 @@ extends CharacterBody2D
 
 # PHYSICS VARS -------------------------------------------------------------------------------------
 @export_category("Physics")
-@export var ground_friction: float = 1200.0   ## The rate at which character speed moves toward 0 
+@export var ground_friction: float = 3000.0   ## The rate at which the knight slows down on the ground
+@export var air_friction: float = 500.0       ## The rate at which the Knight slows down in the air
 @export var terminal_velocity: float = 1600.0 ## The max fall speed of the knight
 var collision_shape_x: float                  ## default x pos of the collision shape
 
 # MOVEMENT VARS ------------------------------------------------------------------------------------
 @export_category("Movement")
 @export var movement_speed: float = 200.0           ## Max running speed of the knight
-@export var movement_acceleration: float = 500.0    ## Ramp up speed of knight running
+@export var movement_acceleration: float = 4000.0    ## Ramp up speed of knight running
 @export var look_direction: Vector2 = Vector2.RIGHT ## The direction the knight is looking
 
 var running: bool = false ## Whether the knight is running
@@ -63,8 +64,10 @@ func _physics_process(delta: float) -> void:
 		handle_input(delta)
 	
 	# Come to a sharp stop when character stops running
-	if not running:
+	if is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0 ,air_friction * delta)
 		
 	# Handle gravity's effect on the knight
 	velocity.y = move_toward(velocity.y, terminal_velocity, get_gravity().y * delta)
