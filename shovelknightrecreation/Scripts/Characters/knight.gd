@@ -27,8 +27,7 @@ var running: bool = false ## Whether the knight is running
 
 var current_health: int               ## Current health of the knight
 var lock_input: bool = false          ## Stops new inputs from being processed
-var interrupt_mechanics: bool = false ## Stops any currently running mechanics
-var is_damaged: bool = false             ## Whether the knight is currently in damaged state
+var is_damaged: bool = false          ## Whether the knight is currently in damaged state
 
 # SHOVEL SWING VARS --------------------------------------------------------------------------------
 @export_category("Shovel Swing")
@@ -43,9 +42,6 @@ var is_damaged: bool = false             ## Whether the knight is currently in d
 var is_swinging: bool = false             ## Whether the knight is currently swinging shovel
 
 # SPRITE VARS --------------------------------------------------------------------------------------
-@export_category("Visuals")
-@export var idle_pose: Texture2D    ## Pose for when no actions are occurring
-@export var damaged_pose: Texture2D ## Pose for when the knight is damaged
 var sprite_ref: AnimatedSprite2D    ## Reference to the sprite component
 
 signal on_health_changed(new_health: int)
@@ -113,23 +109,30 @@ func shovel_swing() -> void:
 	is_swinging = true
 	$SfxController.play(swing_sfx)
 	
-	# Create the hitbox and assign necessary damage variables
-	await get_tree().create_timer(swing_dmg_start).timeout
-	var hitbox = Hitbox.new(attack_group, swing_shape, swing_dmg_duration)
-	hitbox.position.x = swing_x_offset * look_direction.x
-	hitbox.position.y = swing_y_offset
-	hitbox.enemy_knockback = swing_enemy_knockback
-	hitbox.self_knockback = swing_self_knockback
-	hitbox.attack_direction = look_direction
-	add_child(hitbox)
-	
 	#reenable input when attack fades
 	sprite_ref.animation_finished.connect(handle_swing_finished)
 	
+	# Create the hitbox and assign necessary damage variables
+	await get_tree().create_timer(swing_dmg_start).timeout
+	
+	#Checks to see if swing was interrupted
+	if is_swinging:
+		var hitbox = Hitbox.new(attack_group, swing_shape, swing_dmg_duration)
+		hitbox.name = ("SwingHitbox")
+		hitbox.position.x = swing_x_offset * look_direction.x
+		hitbox.position.y = swing_y_offset
+		hitbox.enemy_knockback = swing_enemy_knockback
+		hitbox.self_knockback = swing_self_knockback
+		hitbox.attack_direction = look_direction
+		add_child(hitbox)
+	
 func handle_swing_finished() -> void:
-	lock_input = false
-	is_swinging = false
-	sprite_ref.animation_finished.disconnect(handle_swing_finished)
+	if is_swinging:
+		lock_input = false
+		is_swinging = false
+		sprite_ref.animation_finished.disconnect(handle_swing_finished)
+		if has_node("SwingHitbox"):
+			get_node("SwingHitbox").queue_free()
 		
 # DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
 
@@ -137,14 +140,15 @@ func handle_swing_finished() -> void:
 func take_damage() -> void:
 	# Lock inputs and interrupt mechanics
 	lock_input = true
-	interrupt_mechanics = true
 	is_damaged = true
+	interrupt_mechanics()
 	sprite_ref.play("damaged")
 	
 	# Play damage sound and decrement health
 	print_debug(name + " Damage taken")
 	$SfxController.play(damaged_sfx)
-	current_health -= 1
+	if current_health > 0:
+		current_health -= 1
 	on_health_changed.emit(current_health)
 	if current_health <= 0:
 		death()
@@ -152,7 +156,6 @@ func take_damage() -> void:
 	# Reenable input and mechanics after a delay
 	await get_tree().create_timer(damaged_duration).timeout
 	lock_input = false
-	interrupt_mechanics = false
 	is_damaged = false
 	
 ## Handles the knight's death when current health hits 0
@@ -166,6 +169,10 @@ func take_knockback(knockback: float, direction: Vector2) -> void:
 	else:
 		velocity = Vector2(knockback * direction.x, -(knockback * knockback_y_ratio))
 		print_debug(name + " Knocked back " + str(velocity))
+	
+## Stops current actions
+func interrupt_mechanics() -> void:
+	handle_swing_finished()
 	
 ## Restores 1 point of health to the knight
 func restore_health() -> void:
