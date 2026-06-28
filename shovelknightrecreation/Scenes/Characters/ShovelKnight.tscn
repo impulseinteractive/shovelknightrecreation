@@ -17,7 +17,7 @@ size = Vector2(120, 155)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymhp6"]
 size = Vector2(120, 155)
 
-[node name="ShovelKnight" type="CharacterBody2D" unique_id=1916602543]
+[node name="ShovelKnight" type="CharacterBody2D" unique_id=1916602543 groups=["player"]]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_bcalr")
 movement_speed = 300.0
