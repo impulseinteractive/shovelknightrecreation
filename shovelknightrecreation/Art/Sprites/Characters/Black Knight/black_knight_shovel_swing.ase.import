@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c6lda03t2cjik"
+path="res://.godot/imported/black_knight_shovel_swing.ase-78df1b21255d2362884bb990fac294ca.res"
+
+[deps]
+
+source_file="res://Art/Sprites/Characters/Black Knight/black_knight_shovel_swing.ase"
+dest_files=["res://.godot/imported/black_knight_shovel_swing.ase-78df1b21255d2362884bb990fac294ca.res"]
+
+[params]
+
