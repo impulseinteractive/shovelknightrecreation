@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	if look_direction == Vector2.LEFT:
 		sprite_ref.flip_h = true
 		$CollisionShape2D.position.x = -collision_shape_x
-	else:
+	elif look_direction == Vector2.RIGHT:
 		sprite_ref.flip_h = false
 		$CollisionShape2D.position.x = collision_shape_x
 		
