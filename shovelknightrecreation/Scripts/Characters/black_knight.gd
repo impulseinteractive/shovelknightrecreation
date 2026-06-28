@@ -32,11 +32,14 @@ func _ready() -> void:
 	super()
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:	
+	super(delta)
+
+# Resolves inputs for the Black Knight
+func handle_input(delta: float) -> void:
+	# Debug action for restoring health
 	if Input.is_action_just_pressed("crouch"):
 		restore_to_full_health(0.2)
-	
-	pass
 	
 ## Handles movement input for the Black Knight
 func run(direction: Vector2, delta: float) -> void:

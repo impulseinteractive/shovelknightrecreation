@@ -3,9 +3,9 @@ extends CharacterBody2D
 
 # PHYSICS VARS -------------------------------------------------------------------------------------
 @export_category("Physics")
-@export var ground_friction: float = 900.0    ## The rate at which character speed moves toward 0 
+@export var ground_friction: float = 1200.0   ## The rate at which character speed moves toward 0 
 @export var terminal_velocity: float = 1600.0 ## The max fall speed of the knight
-var collision_shape_x: float                   ## default x pos of the collision shape
+var collision_shape_x: float                  ## default x pos of the collision shape
 
 # MOVEMENT VARS ------------------------------------------------------------------------------------
 @export_category("Movement")
@@ -13,7 +13,6 @@ var collision_shape_x: float                   ## default x pos of the collision
 @export var movement_acceleration: float = 500.0    ## Ramp up speed of knight running
 @export var look_direction: Vector2 = Vector2.RIGHT ## The direction the knight is looking
 
-# Movement flags
 var running: bool = false ## Whether the knight is running
 
 # COMBAT VARS --------------------------------------------------------------------------------------
@@ -24,7 +23,9 @@ var running: bool = false ## Whether the knight is running
 @export var damaged_duration: float = 0.5 ## Duration of damage effect on player
 @export var damaged_sfx: AudioStream ## Sound effect for when this Knight takes damage
 
-var current_health: int              ## Current health of the knight
+var current_health: int               ## Current health of the knight
+var lock_input: bool = false          ## Stops new inputs from being processed
+var interrupt_mechanics: bool = false ## Stops any currently running mechanics
 
 # SHOVEL SWING VARS --------------------------------------------------------------------------------
 @export_category("Shovel Swing")
@@ -51,6 +52,10 @@ func _ready() -> void:
 
 ## Called every physics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	# Resolve inputs if input is not locked
+	if not lock_input:
+		handle_input(delta)
+	
 	# Come to a sharp stop when character stops running
 	if not running:
 		velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
@@ -61,12 +66,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	# Reset the running flag
 	running = false
+	
+	# Flip necessary components when character turns around
 	if look_direction == Vector2.LEFT:
 		$Sprite2D.flip_h = true
 		$CollisionShape2D.position.x = -collision_shape_x
 	else:
 		$Sprite2D.flip_h = false
 		$CollisionShape2D.position.x = collision_shape_x
+		
+## Resolve all inputs in this function
+func handle_input(delta: float) -> void:
+	pass
 
 #MOVEMENT FUNCTIONS --------------------------------------------------------------------------------
 ## Character movement function that takes Vector2.LEFT (-1, 0) or Vector2.RIGHT (1, 0) as directional
@@ -82,11 +93,12 @@ func run(direction: Vector2, delta: float) -> void:
 ## Physics process for shovel swing
 ## Starts the shovel swing when shovel swing is input
 func shovel_swing() -> void:
-	# Play the sound effect
+	# Play the sound effect and lock input
+	lock_input = true
 	$SfxController.play(swing_sfx)
 	
 	# Create the hitbox and assign necessary damage variables
-	get_tree().create_timer(swing_dmg_start).timeout
+	await get_tree().create_timer(swing_dmg_start).timeout
 	var hitbox = Hitbox.new(attack_group, swing_shape, swing_dmg_duration)
 	hitbox.position.x = swing_x_offset * look_direction.x
 	hitbox.position.y = swing_y_offset
@@ -95,16 +107,29 @@ func shovel_swing() -> void:
 	hitbox.attack_direction = look_direction
 	add_child(hitbox)
 	
-	# Swing shovel
+	#reenable input when attack fades
+	await get_tree().create_timer(swing_dmg_duration).timeout
+	lock_input = false
 	print_debug(name + " Shovel Swung")
 		
 # DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
 
 ## Removes health equal to incoming damage
 func take_damage() -> void:
+	# Lock inputs and interrupt mechanics
+	lock_input = true
+	interrupt_mechanics = true
+	
+	# Play damage sound and decrement health
 	print_debug(name + " Damage taken")
 	$SfxController.play(damaged_sfx)
 	current_health -= 1
+	
+	# Reenable input and mechanics after a delay
+	await get_tree().create_timer(damaged_duration).timeout
+	lock_input = false
+	interrupt_mechanics = false
+	
 	
 ## Pushes the player back depending on given direction
 func take_knockback(knockback: float, direction: Vector2) -> void:

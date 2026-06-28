@@ -15,7 +15,11 @@ func _ready() -> void:
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	# MOVEMENT INPUT HANDLING--------------------------------------------------
+	super(delta)
+	pass
+	
+## Resolves all shovel knight inputs
+func handle_input(delta: float) -> void:
 	if Input.is_action_pressed("move_left"):
 		run(Vector2.LEFT, delta)
 		
@@ -27,9 +31,6 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("crouch"):
 		print_debug("Crouch")
-
-	super(delta)
-	pass
 	
 ## Handles movement input for the Shovel Knight
 func run(direction: Vector2, delta: float):
