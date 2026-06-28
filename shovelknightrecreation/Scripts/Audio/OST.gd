@@ -215,10 +215,15 @@ func _note_to_hz(note: String) -> float:
 ## Song reconstruction
 func _build_song() -> void:
 	song = [
+		_section_development(),
+		_section_intro(),
 		_section_intro(),
 		_section_main_a(),
-		#_section_development(),
-		#_section_main_b(),
+		_section_main_a(),
+		_section_main_b(),
+		_section_main_a(),
+		_section_main_a(),
+		_section_main_b()
 	]
 
 ## INTRO SECTION 0:00-0:13
@@ -260,6 +265,60 @@ func _section_main_a() -> Array:
 		elif step % 4 == 2:
 			row["noise"] = _snare()
 		elif step % 2 == 1:
+			row["noise"] = _hat()
+		rows.append(row)
+	return rows
+
+func _section_development() -> Array:
+	var rows: Array = []
+	var lead := [
+		"",   "G4", "A4", "A#4","",   "B4", "C5", "",   "C#5","D5", "",   "D#5","E5", "",   "F5", "F#5", \
+		"G5", "",   "F5", "",   "D#5","",   "C5", "",   "A#4","",   "A4", "",   "G4", "",   "",   ""
+	]
+	var bass := [
+		"G2","","","G3", "","F2","","", "D#2","","","D#3", "","D2","","", \
+		"G2","","","G3", "","F2","","", "D#2","","D2","",  "D2","","",""
+	]
+	## Off-grid kicks/snares
+	var kicks := [0, 6, 10, 16, 22, 26]
+	var snares := [3, 13, 19, 29]
+	for step in range(32):
+		var row: Dictionary = {}
+		if lead[step] != "":
+			row["pulse1"] = {"note": lead[step], "duty": 0.25, "vol": 0.8}
+		if bass[step] != "":
+			row["triangle"] = {"note": bass[step], "vol": 0.8}
+		if step in kicks:
+			row["noise"] = _kick()
+		elif step in snares:
+			row["noise"] = _snare()
+		rows.append(row)
+	return rows
+
+func _section_main_b() -> Array:
+	var rows: Array = []
+	var lead := [
+		"D5","",  "D5","",  "D#5","", "D5","",   "C5","",  "A#4","", "A4","",  "G4","", \
+		"A#4","", "C5","D5","D#5","",  "D5","",   "C5","",  "A#4","", "G4","",  "G4","" 
+	]
+	var harm := [
+		"A#4","", "A#4","", "C5","",  "A#4","",  "A4","",  "F4","",  "F4","",  "D4","", \
+		"F4","",  "A4","A#4","C5","",  "A#4","",  "A4","",  "F4","",  "D4","",  "D4","" 
+	]
+	var bass := _octave_bass(["G2","D#2","F2","D2", "G2","D#2","D2","G2"])
+	for step in range(32):
+		var row: Dictionary = {}
+		if lead[step] != "":
+			row["pulse1"] = {"note": lead[step], "duty": 0.5, "vol": 0.9}
+		if harm[step] != "":
+			row["pulse2"] = {"note": harm[step], "duty": 0.25, "vol": 0.4}
+		if bass[step] != "":
+			row["triangle"] = {"note": bass[step], "vol": 0.85}
+		if step % 4 == 0:
+			row["noise"] = _kick()
+		elif step % 4 == 2:
+			row["noise"] = _snare()
+		else:
 			row["noise"] = _hat()
 		rows.append(row)
 	return rows
