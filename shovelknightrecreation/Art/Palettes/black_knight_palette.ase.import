@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cf3qdr857oql0"
+path="res://.godot/imported/black_knight_palette.ase-7da71edeeec0bad7e46211f3f48e1e57.res"
+
+[deps]
+
+source_file="res://Art/Palettes/black_knight_palette.ase"
+dest_files=["res://.godot/imported/black_knight_palette.ase-7da71edeeec0bad7e46211f3f48e1e57.res"]
+
+[params]
+

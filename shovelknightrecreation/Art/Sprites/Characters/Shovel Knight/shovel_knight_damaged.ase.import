@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dejewfntvu6d1"
+path="res://.godot/imported/shovel_knight_damaged.ase-83f69b6dcc5708f605a84c5be18e67d6.res"
+
+[deps]
+
+source_file="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_damaged.ase"
+dest_files=["res://.godot/imported/shovel_knight_damaged.ase-83f69b6dcc5708f605a84c5be18e67d6.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dqwm4y0iwqpau"
+path="res://.godot/imported/life_title.ase-6ad05aa96648dc4e5159e9302bbb33b5.res"
+
+[deps]
+
+source_file="res://Art/Sprites/HUD/life_title.ase"
+dest_files=["res://.godot/imported/life_title.ase-6ad05aa96648dc4e5159e9302bbb33b5.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dgvs6b4wtx2n1"
+path="res://.godot/imported/enemy_health.ase-fe021cf4bb0fe40de85d4f9e0d2d6345.res"
+
+[deps]
+
+source_file="res://Art/Sprites/HUD/enemy_health.ase"
+dest_files=["res://.godot/imported/enemy_health.ase-fe021cf4bb0fe40de85d4f9e0d2d6345.res"]
+
+[params]
+

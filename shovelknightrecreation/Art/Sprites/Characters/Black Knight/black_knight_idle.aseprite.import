@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cxd1rajgbe283"
+path="res://.godot/imported/black_knight_idle.aseprite-a92010abef21028bef2a0715a6b34301.res"
+
+[deps]
+
+source_file="res://Art/Sprites/Characters/Black Knight/black_knight_idle.aseprite"
+dest_files=["res://.godot/imported/black_knight_idle.aseprite-a92010abef21028bef2a0715a6b34301.res"]
+
+[params]
+

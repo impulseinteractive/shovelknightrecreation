@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c3dbvg3q5ilfm"
+path="res://.godot/imported/boss_title.ase-1191e22c85f32a0ebc36af8af5a3b823.res"
+
+[deps]
+
+source_file="res://Art/Sprites/HUD/boss_title.ase"
+dest_files=["res://.godot/imported/boss_title.ase-1191e22c85f32a0ebc36af8af5a3b823.res"]
+
+[params]
+

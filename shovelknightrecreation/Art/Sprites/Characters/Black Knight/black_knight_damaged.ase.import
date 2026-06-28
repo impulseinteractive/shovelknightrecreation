@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b8vfqiak3otdw"
+path="res://.godot/imported/black_knight_damaged.ase-4260ad2d1b86c730aada854b75c45934.res"
+
+[deps]
+
+source_file="res://Art/Sprites/Characters/Black Knight/black_knight_damaged.ase"
+dest_files=["res://.godot/imported/black_knight_damaged.ase-4260ad2d1b86c730aada854b75c45934.res"]
+
+[params]
+

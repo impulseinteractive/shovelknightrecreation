@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dug1w4kfi2xn1"
+path="res://.godot/imported/player_health_half.ase-3a9896af4587f273bbb92d142565170a.res"
+
+[deps]
+
+source_file="res://Art/Sprites/HUD/player_health_half.ase"
+dest_files=["res://.godot/imported/player_health_half.ase-3a9896af4587f273bbb92d142565170a.res"]
+
+[params]
+

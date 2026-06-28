@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d1jjl7bqa62kf"
+path="res://.godot/imported/shovel_knight.aseprite-51252bd92ed053a938e4286c0ac25e75.res"
+
+[deps]
+
+source_file="res://Art/Palettes/shovel_knight.aseprite"
+dest_files=["res://.godot/imported/shovel_knight.aseprite-51252bd92ed053a938e4286c0ac25e75.res"]
+
+[params]
+
