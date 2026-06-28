@@ -2,15 +2,51 @@
 
 [ext_resource type="PackedScene" uid="uid://b5odb6skbgnpv" path="res://Scenes/Characters/ShovelKnight.tscn" id="1_bwbox"]
 [ext_resource type="PackedScene" uid="uid://b3hfmcf3cb7kb" path="res://Scenes/environment.tscn" id="2_1jrds"]
+[ext_resource type="Texture2D" uid="uid://bll54336jkbk1" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.png" id="2_fsxw8"]
 [ext_resource type="PackedScene" uid="uid://d0cit2h0sykni" path="res://Scenes/Characters/BlackKnight.tscn" id="3_fyudc"]
+[ext_resource type="Texture2D" uid="uid://d02oy7pobuax5" path="res://Art/Sprites/Characters/Black Knight/black_knight_idle.png" id="5_8rbts"]
+[ext_resource type="Texture2D" uid="uid://ye3c7ociopmv" path="res://Art/Sprites/Characters/Black Knight/black_knight_damaged.png" id="6_fnbvd"]
+[ext_resource type="Script" uid="uid://bmkdlfexxkvsn" path="res://Scripts/Characters/Attacks/hitbox.gd" id="7_4q26a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsxw8"]
+size = Vector2(106.66666, 3.3333282)
 
 [node name="CharacterTest" type="Node2D" unique_id=679980862]
 
 [node name="ShovelKnight" parent="." unique_id=1007156364 instance=ExtResource("1_bwbox")]
-position = Vector2(248, 385)
+position = Vector2(251, 384)
+idle_pose = ExtResource("2_fsxw8")
 
 [node name="Environment" parent="." unique_id=1448139220 groups=["enemy_attack", "player_attack"] instance=ExtResource("2_1jrds")]
-position = Vector2(42, 385)
+position = Vector2(0, 389)
 
 [node name="BlackKnight" parent="." unique_id=1142707248 instance=ExtResource("3_fyudc")]
 position = Vector2(846, 387)
+idle_pose = ExtResource("5_8rbts")
+damaged_pose = ExtResource("6_fnbvd")
+
+[node name="ContactHitboxUp" type="Area2D" parent="." unique_id=1646574678 groups=["enemy_attack"]]
+position = Vector2(506, 490)
+collision_layer = 2147483648
+collision_mask = 0
+script = ExtResource("7_4q26a")
+group = &"enemy_attack"
+metadata/_custom_type_script = "uid://bmkdlfexxkvsn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitboxUp" unique_id=1651467768]
+position = Vector2(-15, -165.00002)
+shape = SubResource("RectangleShape2D_fsxw8")
+debug_color = Color(0.86920637, 0.18200374, 0.74174875, 0.41960785)
+
+[node name="ContactHitboxUp2" type="Area2D" parent="." unique_id=1088613129 groups=["enemy_attack"]]
+position = Vector2(499, 501)
+collision_layer = 2147483648
+collision_mask = 0
+script = ExtResource("7_4q26a")
+group = &"enemy_attack"
+metadata/_custom_type_script = "uid://bmkdlfexxkvsn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitboxUp2" unique_id=259335064]
+position = Vector2(-15, -165.00002)
+shape = SubResource("RectangleShape2D_fsxw8")
+debug_color = Color(0.86920637, 0.18200374, 0.74174875, 0.41960785)
