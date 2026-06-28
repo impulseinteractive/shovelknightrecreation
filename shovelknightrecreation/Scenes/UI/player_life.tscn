@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bfrw4gly5ymic"]
+
+[ext_resource type="Script" uid="uid://frgl0mqovvub" path="res://Scripts/UI/player_health_ui.gd" id="1_04myk"]
+[ext_resource type="Texture2D" uid="uid://dq0po84nbmrx0" path="res://Art/Sprites/HUD/health_empty.png" id="2_yhvlc"]
+[ext_resource type="Texture2D" uid="uid://ckydttxo4w5db" path="res://Art/Sprites/HUD/player_health_half.png" id="3_5vxi3"]
+[ext_resource type="Texture2D" uid="uid://y4j4bea0wl8h" path="res://Art/Sprites/HUD/player_health_full.png" id="4_y8ot1"]
+
+[node name="PlayerLife" type="Control" unique_id=6645311]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_04myk")
+life_bubble_empty = ExtResource("2_yhvlc")
+life_bubble_half = ExtResource("3_5vxi3")
+life_bubble_full = ExtResource("4_y8ot1")
+
+[node name="LifeBarContainer" type="HBoxContainer" parent="." unique_id=1970199229]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 8.0
+theme_override_constants/separation = 1

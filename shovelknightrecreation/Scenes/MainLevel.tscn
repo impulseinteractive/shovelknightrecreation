@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://b3hfmcf3cb7kb" path="res://Scenes/environment.tscn" id="1_r7jfx"]
 [ext_resource type="PackedScene" uid="uid://b5odb6skbgnpv" path="res://Scenes/Characters/ShovelKnight.tscn" id="3_c77c4"]
 [ext_resource type="PackedScene" uid="uid://d0cit2h0sykni" path="res://Scenes/Characters/BlackKnight.tscn" id="3_o15vh"]
-[ext_resource type="PackedScene" path="res://Scenes/LevelStartupPrompt.tscn" id="4_o15vh"]
+[ext_resource type="PackedScene" uid="uid://ckq5iqbgmb2us" path="res://Scenes/UI/LevelStartupPrompt.tscn" id="4_o15vh"]
+[ext_resource type="PackedScene" uid="uid://2ceuiludk3bg" path="res://Scenes/UI/health_ui.tscn" id="5_ymtjv"]
 
 [node name="MainLevel" type="Node2D" unique_id=996745347]
 
@@ -19,3 +20,13 @@ position = Vector2(1024, 624)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=898548762]
 
 [node name="LevelStartupPrompt" parent="CanvasLayer" unique_id=156246579 instance=ExtResource("4_o15vh")]
+
+[node name="HealthUI" parent="CanvasLayer" unique_id=146945874 instance=ExtResource("5_ymtjv")]
+
+[node name="PlayerLife" parent="CanvasLayer/HealthUI/PlayerContainer" parent_id_path=PackedInt32Array(146945874, 49150145) index="1" unique_id=6645311 node_paths=PackedStringArray("player_ref")]
+player_ref = NodePath("../../../../ShovelKnight")
+
+[node name="BossLife" parent="CanvasLayer/HealthUI/BossContainer" parent_id_path=PackedInt32Array(146945874, 1497525335) index="1" unique_id=282792983 node_paths=PackedStringArray("boss_ref")]
+boss_ref = NodePath("../../../../BlackKnight")
+
+[editable path="CanvasLayer/HealthUI"]

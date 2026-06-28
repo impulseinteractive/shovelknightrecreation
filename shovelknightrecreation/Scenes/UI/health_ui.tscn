@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://2ceuiludk3bg"]
+
+[ext_resource type="Texture2D" uid="uid://dx41niibu5t34" path="res://Art/Sprites/HUD/life_title.png" id="1_jbv2o"]
+[ext_resource type="PackedScene" uid="uid://bfrw4gly5ymic" path="res://Scenes/UI/player_life.tscn" id="2_bqrld"]
+[ext_resource type="Texture2D" uid="uid://bnb5ivqp4krka" path="res://Art/Sprites/HUD/boss_title.png" id="3_bqrld"]
+[ext_resource type="PackedScene" uid="uid://dqevdt6r8meh4" path="res://Scenes/UI/boss_life.tscn" id="4_okcpi"]
+
+[node name="HealthUI" type="Control" unique_id=146945874]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerContainer" type="VBoxContainer" parent="." unique_id=49150145]
+layout_mode = 1
+offset_right = 45.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="PlayerContainer" unique_id=1260445003]
+layout_mode = 2
+texture = ExtResource("1_jbv2o")
+
+[node name="PlayerLife" parent="PlayerContainer" unique_id=6645311 instance=ExtResource("2_bqrld")]
+layout_mode = 2
+
+[node name="BossContainer" type="VBoxContainer" parent="." unique_id=1497525335]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="BossContainer" unique_id=481900363]
+layout_mode = 2
+texture = ExtResource("3_bqrld")
+
+[node name="BossLife" parent="BossContainer" unique_id=282792983 instance=ExtResource("4_okcpi")]
+layout_mode = 2
