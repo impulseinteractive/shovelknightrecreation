@@ -9,8 +9,6 @@ var contact_hitboxes: Dictionary[String, Hitbox] = {}
 
 var contact_hitbox_x: Dictionary[String, float] = {}
 
-signal on_boss_health_changed(new_health: int)
-
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if has_node("ContactHitboxUp") and get_node("ContactHitboxUp") is Hitbox:
@@ -50,12 +48,4 @@ func run(direction: Vector2, delta: float) -> void:
 	# Stops momentum immediately when changing direction
 	if (direction == Vector2.RIGHT and velocity.x < 0) \
 				or (direction == Vector2.LEFT and velocity.x > 0):
-				velocity = Vector2(0, velocity.y)
-				
-# DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
-## Take damage and update the UI via signal
-func take_damage() -> void:
-	super()
-	on_boss_health_changed.emit(current_health)
-
-				
+				velocity = Vector2(0, velocity.y)	

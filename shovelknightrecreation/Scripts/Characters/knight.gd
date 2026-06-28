@@ -43,6 +43,8 @@ var interrupt_mechanics: bool = false ## Stops any currently running mechanics
 @export var idle_pose: Texture2D    ## Pose for when no actions are occurring
 @export var damaged_pose: Texture2D ## Pose for when the knight is damaged
 
+signal on_health_changed(new_health: int)
+
 # --------------------------------------------------------------------------------------------------
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -124,6 +126,7 @@ func take_damage() -> void:
 	print_debug(name + " Damage taken")
 	$SfxController.play(damaged_sfx)
 	current_health -= 1
+	on_health_changed.emit(current_health)
 	
 	# Reenable input and mechanics after a delay
 	await get_tree().create_timer(damaged_duration).timeout
