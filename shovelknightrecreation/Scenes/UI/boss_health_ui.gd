@@ -14,12 +14,10 @@ var ui_current_health: int = ui_max_health
 
 @export var debug_input: bool = false
 
-signal on_boss_health_changed(new_health: int)
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	on_boss_health_changed.connect(update_boss_health)
+	boss_ref.on_health_changed.connect(update_boss_health)
 	
 	if boss_ref:
 		ui_max_health = boss_ref.max_health
@@ -36,7 +34,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if debug_input and Input.is_action_just_pressed("ui_page_up"):
 		ui_current_health -= 1
-		on_boss_health_changed.emit(ui_current_health)
 		pass
 	pass
 
