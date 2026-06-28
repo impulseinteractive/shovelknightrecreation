@@ -16,6 +16,7 @@ size = Vector2(109, 164)
 [node name="BlackKnight" type="CharacterBody2D" unique_id=1142707248]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_vuakd")
+movement_speed = 300.0
 damaged_sfx = ExtResource("2_a1tgm")
 swing_sfx = ExtResource("3_6vsk3")
 
