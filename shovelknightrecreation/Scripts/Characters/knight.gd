@@ -81,9 +81,9 @@ func _physics_process(delta: float) -> void:
 		sprite_ref.flip_h = false
 		$CollisionShape2D.position.x = collision_shape_x
 		
-	# Return to idle pose when no other actions are happening
-	if (not is_damaged and not is_swinging):
-		sprite_ref.play("idle")
+	# Return to idle pose when dno other actions are happening
+	#if (not is_damaged and not is_swinging):
+		#sprite_ref.play("idle")
 		
 ## Resolve all inputs in this function
 func handle_input(delta: float) -> void:
@@ -167,7 +167,7 @@ func take_knockback(knockback: float, direction: Vector2) -> void:
 	if direction == Vector2.UP or direction == Vector2.DOWN:
 		velocity += knockback * direction
 	else:
-		velocity = Vector2(knockback * direction.x, -(knockback * knockback_y_ratio))
+		velocity = Vector2(knockback * direction.x, - (knockback * knockback_y_ratio))
 		print_debug(name + " Knocked back " + str(velocity))
 	
 ## Stops current actions

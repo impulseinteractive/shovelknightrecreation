@@ -1,55 +1,37 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://ytnfptfbn1er"]
 
-[ext_resource type="Texture2D" uid="uid://d02oy7pobuax5" path="res://Art/Sprites/Characters/Black Knight/black_knight_idle.png" id="1_hd5ny"]
-[ext_resource type="Texture2D" uid="uid://cq1b1ipgcu5e0" path="res://shovel_knight_swing.png" id="2_jvhe4"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hd5ny"]
-atlas = ExtResource("2_jvhe4")
-region = Rect2(0, 0, 75, 75)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jvhe4"]
-atlas = ExtResource("2_jvhe4")
-region = Rect2(75, 0, 75, 75)
+[ext_resource type="Texture2D" uid="uid://c2v033mi832bi" path="res://Art/Sprites/Characters/Black Knight/black_knight_idle.png" id="1_hd5ny"]
+[ext_resource type="Texture2D" uid="uid://ye3c7ociopmv" path="res://Art/Sprites/Characters/Black Knight/black_knight_damaged.png" id="1_jvhe4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2k0sw"]
-atlas = ExtResource("2_jvhe4")
-region = Rect2(150, 0, 75, 75)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2oibm"]
-atlas = ExtResource("2_jvhe4")
-region = Rect2(0, 75, 75, 75)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vdjcd"]
-atlas = ExtResource("2_jvhe4")
-region = Rect2(75, 75, 75, 75)
+atlas = ExtResource("1_jvhe4")
+region = Rect2(0, 0, 75, 75)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_hd5ny")
+"texture": SubResource("AtlasTexture_2k0sw")
 }],
-"loop": true,
-"name": &"default",
+"loop": false,
+"name": &"damaged",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hd5ny")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jvhe4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2k0sw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2oibm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vdjcd")
+"texture": ExtResource("1_hd5ny")
 }],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
 "loop": true,
-"name": &"new_animation",
+"name": &"running",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"shovel swing",
 "speed": 5.0
 }]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pnkgost5k5gc"
-path="res://.godot/imported/shovel_knight_run2.png-a16ce0b6969b06a046745759e9f7f45c.ctex"
+uid="uid://1iiot5sey6gw"
+path="res://.godot/imported/shovel_knight_run.png-4ac1fdd9545aba8018589498a2e8d389.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_run2.png"
-dest_files=["res://.godot/imported/shovel_knight_run2.png-a16ce0b6969b06a046745759e9f7f45c.ctex"]
+source_file="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_run.png"
+dest_files=["res://.godot/imported/shovel_knight_run.png-4ac1fdd9545aba8018589498a2e8d389.ctex"]
 
 [params]
 

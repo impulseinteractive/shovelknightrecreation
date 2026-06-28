@@ -53,7 +53,7 @@ func run(direction: Vector2, delta: float) -> void:
 				
 	elif pivoting:
 		pivot_timer += delta
-		
+		$AnimatedSprite2D.play("pivot")
 		if pivot_timer >= pivot_delay:
 			pivoting = false
 			
