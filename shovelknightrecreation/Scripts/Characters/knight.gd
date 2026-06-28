@@ -134,7 +134,7 @@ func handle_swing_finished() -> void:
 		if has_node("SwingHitbox"):
 			get_node("SwingHitbox").queue_free()
 		
-# DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
+# COMBAT FUNCTIONS ---------------------------------------------------------------------------------
 
 ## Removes health equal to incoming damage
 func take_damage() -> void:

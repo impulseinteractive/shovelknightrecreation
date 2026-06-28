@@ -50,7 +50,7 @@ func run(direction: Vector2, delta: float) -> void:
 				or (direction == Vector2.LEFT and velocity.x > 0):
 				velocity = Vector2(0, velocity.y)	
 			
-# DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
+# COMBAT FUNCTIONS ---------------------------------------------------------------------------------
 ## Broadcasts success state on Black Knight death
 func death() -> void:
 	level_manager.state_changed.emit(LevelStateManager.LevelState.LEVEL_SUCCESS)

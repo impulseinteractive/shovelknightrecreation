@@ -8,8 +8,17 @@ extends Knight
 var pivot_timer: float = 0.0 ## Tracks times since pivot started
 var pivoting: bool = false ## Whether the knight is pivoting
 
-# DAMAGE SYSTEM VARS -------------------------------------------------------------------------------
-var hurtbox_ref: Hurtbox ## Reference to Shovel Knight's hurtbox
+# COMBAT VARS --------------------------------------------------------------------------------------
+@export_category("Combat")
+@export var iframe_duration: float = 1.5 ## Amount of i-frames received when taking damage
+
+var hurtbox_ref: Hurtbox    ## Reference to Shovel Knight's hurtbox
+var is_immune: bool = false ## Whether Shovel Knight is immune to damage
+
+# SPRITE VARS --------------------------------------------------------------------------------------
+@export_category("Visuals")
+@export var iframe_flash_interval: float = 0.1 ## How frequently the sprite flashes in i-frames
+
 #---------------------------------------------------------------------------------------------------
 
 ## Called when the node enters the scene tree for the first time.
@@ -60,11 +69,23 @@ func run(direction: Vector2, delta: float) -> void:
 # DAMAGE SYSTEM FUNCTION ---------------------------------------------------------------------------
 ## Gives invulnerability frames when Shovel Knight takes damage
 func take_damage() -> void:
-	hurtbox_ref.set_deferred("monitoring", false)
+	start_iframes()
 	super()
-	await get_tree().create_timer(damaged_duration).timeout
-	hurtbox_ref.set_deferred("monitoring", true)
 	
 ## Broadcasts fail state on Shovel Knight death
 func death() -> void:
 	level_manager.state_changed.emit(LevelStateManager.LevelState.LEVEL_FAILURE)
+	
+func start_iframes() -> void:
+	is_immune = true
+	hurtbox_ref.set_deferred("monitoring", false)
+	get_tree().create_timer(iframe_duration).timeout.connect(end_iframes)
+	
+	while is_immune:
+		sprite_ref.visible = not sprite_ref.visible
+		await get_tree().create_timer(iframe_flash_interval).timeout
+	
+func end_iframes() -> void:
+	is_immune = false
+	sprite_ref.visible = true
+	hurtbox_ref.set_deferred("monitoring", true)
