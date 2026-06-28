@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cendp5a5djdad"
-path="res://.godot/imported/placeholder_tile.png-19a8a453baef7ae72696071be3229161.ctex"
+uid="uid://bn7285ydnrwsj"
+path="res://.godot/imported/GrassDirt.png-8c3b95e828d7bd42930dbb18f015bf44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/Environment/placeholder_tile.png"
-dest_files=["res://.godot/imported/placeholder_tile.png-19a8a453baef7ae72696071be3229161.ctex"]
+source_file="res://Art/Sprites/Environment/GrassDirt.png"
+dest_files=["res://.godot/imported/GrassDirt.png-8c3b95e828d7bd42930dbb18f015bf44.ctex"]
 
 [params]
 
