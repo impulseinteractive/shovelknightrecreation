@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b4sp4hsafrhaj"
+path="res://.godot/imported/shovel_knight_pivot.ase-8bbc55e7f498312fa63574be9e5e48f1.res"
+
+[deps]
+
+source_file="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_pivot.ase"
+dest_files=["res://.godot/imported/shovel_knight_pivot.ase-8bbc55e7f498312fa63574be9e5e48f1.res"]
+
+[params]
+
