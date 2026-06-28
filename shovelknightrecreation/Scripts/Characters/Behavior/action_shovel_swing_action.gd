@@ -22,10 +22,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	# Perform attack
 	print("Enemy attacks player!")
 	knight_actor.shovel_swing()
-	# In a real game, you might trigger an animation or spawn a projectile here
-	
-	
-	
 	return SUCCESS
 
 

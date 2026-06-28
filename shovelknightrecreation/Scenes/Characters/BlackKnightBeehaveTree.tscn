@@ -11,19 +11,20 @@
 [ext_resource type="Script" uid="uid://bc7ll5wytbk1n" path="res://Scripts/Characters/Behavior/action_play_animation.gd" id="6_sfreo"]
 [ext_resource type="Script" uid="uid://bc7puitbqj2g1" path="res://Scripts/Characters/Behavior/action_shovel_swing_action.gd" id="7_r5spv"]
 [ext_resource type="Script" uid="uid://dh1scp6jrebut" path="res://Scripts/Characters/Behavior/action_print_message.gd" id="8_eyrh7"]
+[ext_resource type="Script" uid="uid://qm2alfofdh6y" path="res://Scripts/Characters/Behavior/condition_start_retreat.gd" id="9_0sisf"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="9_sxbeq"]
 [ext_resource type="Script" uid="uid://41iym3iehqvg" path="res://Scripts/Characters/Behavior/action_retreat.gd" id="13_cgfvq"]
+[ext_resource type="Script" uid="uid://mxofnrdivj3u" path="res://Scripts/Characters/Behavior/action_adjust_retreat_probability.gd" id="14_sfreo"]
 
 [node name="BlackKnightBeehaveTree" type="Node" unique_id=904135487]
 
 [node name="Blackboard" type="Node" parent="." unique_id=1007674850]
 script = ExtResource("5_ntb8i")
 blackboard = {
-"attack_range": 0.0,
+"attack_range": 150.0,
 "is_dead": false,
 "is_hit": false,
-"player_detected": false,
-"player_position": Vector2(0, 0)
+"retreat_probability": 0.0
 }
 metadata/_custom_type_script = "uid://dme5f24l0edsf"
 
@@ -49,9 +50,35 @@ metadata/_custom_type_script = "uid://cb1nl2oayl254"
 script = ExtResource("6_sfreo")
 metadata/_custom_type_script = "uid://bc7ll5wytbk1n"
 
-[node name="ShovelSwingDelay" type="Node" parent="BeehaveTree/MainSelector" unique_id=1550535079]
+[node name="RetreatDelay" type="Node" parent="BeehaveTree/MainSelector" unique_id=1963140539]
 script = ExtResource("9_sxbeq")
 wait_time = 0.5
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="SequenceRetreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay" unique_id=1954075338]
+script = ExtResource("4_psloy")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="IsRetreating" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=504946436]
+script = ExtResource("9_0sisf")
+metadata/_custom_type_script = "uid://qm2alfofdh6y"
+
+[node name="PrintMessage" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=1214521786]
+script = ExtResource("8_eyrh7")
+message = "Hello"
+metadata/_custom_type_script = "uid://dh1scp6jrebut"
+
+[node name="PrintMessage2" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=502249543]
+script = ExtResource("8_eyrh7")
+message = "I a runaway"
+metadata/_custom_type_script = "uid://dh1scp6jrebut"
+
+[node name="Retreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=1899886849]
+script = ExtResource("13_cgfvq")
+metadata/_custom_type_script = "uid://41iym3iehqvg"
+
+[node name="ShovelSwingDelay" type="Node" parent="BeehaveTree/MainSelector" unique_id=1550535079]
+script = ExtResource("9_sxbeq")
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
 [node name="SequenceChaseAndShovelSwing" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay" unique_id=1863450225]
@@ -60,7 +87,7 @@ metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
 [node name="IsPlayerClose" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=274735669]
 script = ExtResource("5_7x4vc")
-player_detection_range = 400.0
+player_detection_range = 600.0
 metadata/_custom_type_script = "uid://ddxvsgxbyioof"
 
 [node name="PrintMessage" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=121182504]
@@ -76,25 +103,6 @@ metadata/_custom_type_script = "uid://btuoej5etvxpk"
 script = ExtResource("7_r5spv")
 metadata/_custom_type_script = "uid://bc7puitbqj2g1"
 
-[node name="RetreatDelay" type="Node" parent="BeehaveTree/MainSelector" unique_id=1963140539]
-script = ExtResource("9_sxbeq")
-wait_time = 0.1
-metadata/_custom_type_script = "uid://dorri1tul8gfx"
-
-[node name="SequenceRetreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay" unique_id=1954075338]
-script = ExtResource("4_psloy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="PrintMessage" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=1214521786]
-script = ExtResource("8_eyrh7")
-message = "Hello"
-metadata/_custom_type_script = "uid://dh1scp6jrebut"
-
-[node name="PrintMessage2" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=502249543]
-script = ExtResource("8_eyrh7")
-message = "I a runaway"
-metadata/_custom_type_script = "uid://dh1scp6jrebut"
-
-[node name="Retreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=1899886849]
-script = ExtResource("13_cgfvq")
-metadata/_custom_type_script = "uid://41iym3iehqvg"
+[node name="AdjustRetreatProbability" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=133748160]
+script = ExtResource("14_sfreo")
+metadata/_custom_type_script = "uid://mxofnrdivj3u"
