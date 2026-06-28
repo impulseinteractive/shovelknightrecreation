@@ -1,6 +1,8 @@
 class_name Knight
 extends CharacterBody2D
 
+@onready var level_manager = LevelStateManager
+
 # PHYSICS VARS -------------------------------------------------------------------------------------
 @export_category("Physics")
 @export var ground_friction: float = 1200.0   ## The rate at which character speed moves toward 0 
@@ -26,6 +28,7 @@ var running: bool = false ## Whether the knight is running
 var current_health: int               ## Current health of the knight
 var lock_input: bool = false          ## Stops new inputs from being processed
 var interrupt_mechanics: bool = false ## Stops any currently running mechanics
+var is_damaged: bool = false             ## Whether the knight is currently in damaged state
 
 # SHOVEL SWING VARS --------------------------------------------------------------------------------
 @export_category("Shovel Swing")
@@ -37,17 +40,22 @@ var interrupt_mechanics: bool = false ## Stops any currently running mechanics
 @export var swing_x_offset: float = 80.0         ## X position of the hitbox relative to the knight
 @export var swing_y_offset: float = -60.0        ## Y position of the hitbox relative to the knight
 @export var swing_sfx: AudioStream               ## Sound effect for the shovel swing
+var is_swinging: bool = false             ## Whether the knight is currently swinging shovel
 
 # SPRITE VARS --------------------------------------------------------------------------------------
 @export_category("Visuals")
 @export var idle_pose: Texture2D    ## Pose for when no actions are occurring
 @export var damaged_pose: Texture2D ## Pose for when the knight is damaged
+var sprite_ref: AnimatedSprite2D    ## Reference to the sprite component
 
 signal on_health_changed(new_health: int)
 
 # --------------------------------------------------------------------------------------------------
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if has_node("AnimatedSprite2D"):
+		sprite_ref = $AnimatedSprite2D
+	
 	collision_shape_x = $CollisionShape2D.position.x
 	current_health = max_health
 	print_debug(name + " Health set to " + str(current_health))
@@ -71,11 +79,15 @@ func _physics_process(delta: float) -> void:
 	
 	# Flip necessary components when character turns around
 	if look_direction == Vector2.LEFT:
-		$Sprite2D.flip_h = true
+		sprite_ref.flip_h = true
 		$CollisionShape2D.position.x = -collision_shape_x
-	else:
-		$Sprite2D.flip_h = false
+	elif look_direction == Vector2.RIGHT:
+		sprite_ref.flip_h = false
 		$CollisionShape2D.position.x = collision_shape_x
+		
+	# Return to idle pose when no other actions are happening
+	if (not is_damaged and not is_swinging):
+		sprite_ref.play("idle")
 		
 ## Resolve all inputs in this function
 func handle_input(delta: float) -> void:
@@ -97,6 +109,8 @@ func run(direction: Vector2, delta: float) -> void:
 func shovel_swing() -> void:
 	# Play the sound effect and lock input
 	lock_input = true
+	sprite_ref.play("shovel swing")
+	is_swinging = true
 	$SfxController.play(swing_sfx)
 	
 	# Create the hitbox and assign necessary damage variables
@@ -110,9 +124,12 @@ func shovel_swing() -> void:
 	add_child(hitbox)
 	
 	#reenable input when attack fades
-	await get_tree().create_timer(swing_dmg_duration).timeout
+	sprite_ref.animation_finished.connect(handle_swing_finished)
+	
+func handle_swing_finished() -> void:
 	lock_input = false
-	print_debug(name + " Shovel Swung")
+	is_swinging = false
+	sprite_ref.animation_finished.disconnect(handle_swing_finished)
 		
 # DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
 
@@ -121,18 +138,26 @@ func take_damage() -> void:
 	# Lock inputs and interrupt mechanics
 	lock_input = true
 	interrupt_mechanics = true
+	is_damaged = true
+	sprite_ref.play("damaged")
 	
 	# Play damage sound and decrement health
 	print_debug(name + " Damage taken")
 	$SfxController.play(damaged_sfx)
 	current_health -= 1
 	on_health_changed.emit(current_health)
+	if current_health <= 0:
+		death()
 	
 	# Reenable input and mechanics after a delay
 	await get_tree().create_timer(damaged_duration).timeout
 	lock_input = false
 	interrupt_mechanics = false
+	is_damaged = false
 	
+## Handles the knight's death when current health hits 0
+func death() -> void:
+	pass
 	
 ## Pushes the player back depending on given direction
 func take_knockback(knockback: float, direction: Vector2) -> void:

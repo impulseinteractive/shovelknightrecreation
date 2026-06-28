@@ -1,0 +1,83 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://d5ojgjlcor3h"]
+
+[ext_resource type="Texture2D" uid="uid://1yflyastlrk2" path="res://Art/Animations/Shovel Knight/shovel_knight_damaged.png" id="1_72pmi"]
+[ext_resource type="Texture2D" uid="uid://cm87itje8k3tn" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.png" id="1_y4isl"]
+[ext_resource type="Texture2D" uid="uid://cq1b1ipgcu5e0" path="res://shovel_knight_swing.png" id="2_72pmi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78yum"]
+atlas = ExtResource("1_y4isl")
+region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va1ym"]
+atlas = ExtResource("2_72pmi")
+region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lmyq"]
+atlas = ExtResource("2_72pmi")
+region = Rect2(75, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w624"]
+atlas = ExtResource("2_72pmi")
+region = Rect2(150, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2pq1"]
+atlas = ExtResource("2_72pmi")
+region = Rect2(0, 75, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbq85"]
+atlas = ExtResource("2_72pmi")
+region = Rect2(75, 75, 75, 75)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_72pmi")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78yum")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va1ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lmyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w624")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2pq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbq85")
+}],
+"loop": false,
+"name": &"shovel swing",
+"speed": 25.0
+}]
+metadata/_aseprite_wizard_source_file_hash_ = "99e33bc4163dc15124804793d2f9f2f3"
+metadata/_aseprite_wizard_config_ = {
+"fields": {
+"do_not_create_resource": false,
+"layer_exclusion_pattern": "",
+"only_visible_layers": false,
+"output_location": "res://",
+"output_name": "",
+"scale": "1.0",
+"should_round_fps": true,
+"source_file": "res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.ase",
+"split_layers": false
+},
+"group": ""
+}
