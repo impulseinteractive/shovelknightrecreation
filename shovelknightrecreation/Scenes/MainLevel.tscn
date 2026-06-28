@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b3hfmcf3cb7kb" path="res://Scenes/environment.tscn" id="1_r7jfx"]
 [ext_resource type="PackedScene" uid="uid://b5odb6skbgnpv" path="res://Scenes/Characters/ShovelKnight.tscn" id="3_c77c4"]
-[ext_resource type="PackedScene" uid="uid://ck8wtngxe1a0k" path="res://Scenes/Characters/BlackKnight.tscn" id="3_o15vh"]
+[ext_resource type="PackedScene" uid="uid://d0cit2h0sykni" path="res://Scenes/Characters/BlackKnight.tscn" id="3_o15vh"]
 [ext_resource type="PackedScene" path="res://Scenes/LevelStartupPrompt.tscn" id="4_o15vh"]
 
 [node name="MainLevel" type="Node2D" unique_id=996745347]
