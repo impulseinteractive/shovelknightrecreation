@@ -22,6 +22,7 @@ var running: bool = false ## Whether the knight is running
 @export var knockback_y_ratio = 0.8  ## Portion of knockback applied vertically on horizontal attacks 
 @export var attack_group: StringName ## Name of the group the knight's attacks belongs to
 @export var damaged_duration: float = 0.5 ## Duration of damage effect on player
+@export var damaged_sfx: AudioStream ## Sound effect for when this Knight takes damage
 
 var current_health: int              ## Current health of the knight
 
@@ -83,13 +84,7 @@ func run(direction: Vector2, delta: float) -> void:
 ## Starts the shovel swing when shovel swing is input
 func shovel_swing() -> void:
 	# Play the sound effect
-	var sfx = AudioStreamPlayer.new()
-	if swing_sfx:
-		add_child(sfx)
-		
-		sfx.stream = swing_sfx
-		
-		sfx.play()
+	$SfxController.play(swing_sfx)
 	
 	# Create the hitbox and assign necessary damage variables
 	get_tree().create_timer(swing_dmg_start).timeout
@@ -103,16 +98,13 @@ func shovel_swing() -> void:
 	
 	# Swing shovel
 	print_debug(name + " Shovel Swung")
-	
-	# Free the audio player from memory
-	await sfx.finished
-	sfx.queue_free()
 		
 # DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
 
 ## Removes health equal to incoming damage
 func take_damage() -> void:
 	print_debug(name + " Damage taken")
+	$SfxController.play(damaged_sfx)
 	current_health -= 1
 	
 ## Pushes the player back depending on given direction

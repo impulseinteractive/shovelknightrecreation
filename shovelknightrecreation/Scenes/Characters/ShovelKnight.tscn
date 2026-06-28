@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b5odb6skbgnpv"]
 
 [ext_resource type="Script" uid="uid://dwnla04b14ku2" path="res://Scripts/Characters/shovel_knight.gd" id="1_bcalr"]
-[ext_resource type="Texture2D" uid="uid://bll54336jkbk1" path="res://Art/Sprites/Chracters/shovel_knight_idle.png" id="2_phpyr"]
-[ext_resource type="AudioStream" uid="uid://cecsoqmxd8g8l" path="res://Audio/SFX_bk_hit.wav" id="2_xdoyt"]
+[ext_resource type="Texture2D" uid="uid://bll54336jkbk1" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.png" id="2_phpyr"]
+[ext_resource type="AudioStream" uid="uid://cir5s665uefsv" path="res://Audio/SFX_shovel_swing.wav" id="2_xdoyt"]
+[ext_resource type="PackedScene" uid="uid://ckms3743k0u6i" path="res://Scenes/SfxController.tscn" id="4_syip6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phpyr"]
 
@@ -25,3 +26,5 @@ position = Vector2(-85, -155)
 scale = Vector2(5, 5)
 texture = ExtResource("2_phpyr")
 centered = false
+
+[node name="SfxController" parent="." unique_id=708739224 instance=ExtResource("4_syip6")]

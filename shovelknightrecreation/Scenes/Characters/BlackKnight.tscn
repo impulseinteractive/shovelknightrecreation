@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://d0cit2h0sykni"]
 
 [ext_resource type="Script" uid="uid://dbp2tytue0ccy" path="res://Scripts/Characters/black_knight.gd" id="1_vuakd"]
-[ext_resource type="Texture2D" uid="uid://d02oy7pobuax5" path="res://Art/Sprites/Chracters/black_knight_idle.png" id="2_fh7s2"]
+[ext_resource type="AudioStream" uid="uid://cecsoqmxd8g8l" path="res://Audio/SFX_bk_hit.wav" id="2_a1tgm"]
+[ext_resource type="Texture2D" uid="uid://d02oy7pobuax5" path="res://Art/Sprites/Characters/Black Knight/black_knight_idle.png" id="2_fh7s2"]
+[ext_resource type="AudioStream" uid="uid://cir5s665uefsv" path="res://Audio/SFX_shovel_swing.wav" id="3_6vsk3"]
 [ext_resource type="Script" uid="uid://lugw7yd8wuqv" path="res://Scripts/Characters/Attacks/hurtbox.gd" id="3_e1jq7"]
+[ext_resource type="PackedScene" uid="uid://ckms3743k0u6i" path="res://Scenes/SfxController.tscn" id="4_wbrs2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7s2"]
 size = Vector2(110, 165)
@@ -13,6 +16,8 @@ size = Vector2(109, 164)
 [node name="BlackKnight" type="CharacterBody2D" unique_id=1142707248]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_vuakd")
+damaged_sfx = ExtResource("2_a1tgm")
+swing_sfx = ExtResource("3_6vsk3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2082938975]
 position = Vector2(-15, -82.5)
@@ -34,3 +39,5 @@ monitored_group = &"player_attack"
 position = Vector2(-14.5, -82)
 shape = SubResource("RectangleShape2D_wbrs2")
 debug_color = Color(0.79733616, 0.40304694, 0.33685336, 0.41960785)
+
+[node name="SfxController" parent="." unique_id=708739224 instance=ExtResource("4_wbrs2")]
