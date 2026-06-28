@@ -26,7 +26,7 @@ var running: bool = false ## Whether the knight is running
 var current_health: int               ## Current health of the knight
 var lock_input: bool = false          ## Stops new inputs from being processed
 var interrupt_mechanics: bool = false ## Stops any currently running mechanics
-var damaged: bool = false             ## Whether the knight is currently in damaged state
+var is_damaged: bool = false             ## Whether the knight is currently in damaged state
 
 # SHOVEL SWING VARS --------------------------------------------------------------------------------
 @export_category("Shovel Swing")
@@ -38,12 +38,13 @@ var damaged: bool = false             ## Whether the knight is currently in dama
 @export var swing_x_offset: float = 80.0         ## X position of the hitbox relative to the knight
 @export var swing_y_offset: float = -60.0        ## Y position of the hitbox relative to the knight
 @export var swing_sfx: AudioStream               ## Sound effect for the shovel swing
+var is_swinging: bool = false             ## Whether the knight is currently swinging shovel
 
 # SPRITE VARS --------------------------------------------------------------------------------------
 @export_category("Visuals")
 @export var idle_pose: Texture2D    ## Pose for when no actions are occurring
 @export var damaged_pose: Texture2D ## Pose for when the knight is damaged
-var sprite_ref#: AnimatedSprite2D    ## Reference to the sprite component
+var sprite_ref: AnimatedSprite2D    ## Reference to the sprite component
 
 signal on_health_changed(new_health: int)
 
@@ -52,10 +53,7 @@ signal on_health_changed(new_health: int)
 func _ready() -> void:
 	if has_node("AnimatedSprite2D"):
 		sprite_ref = $AnimatedSprite2D
-	# Uses sprite until animated sprite is added
-	else:
-		sprite_ref = $Sprite2D
-		
+	
 	collision_shape_x = $CollisionShape2D.position.x
 	current_health = max_health
 	print_debug(name + " Health set to " + str(current_health))
@@ -86,8 +84,8 @@ func _physics_process(delta: float) -> void:
 		$CollisionShape2D.position.x = collision_shape_x
 		
 	# Return to idle pose when no other actions are happening
-	if not damaged:
-		sprite_ref.texture = idle_pose
+	if (not is_damaged and not is_swinging):
+		sprite_ref.play("idle")
 		
 ## Resolve all inputs in this function
 func handle_input(delta: float) -> void:
@@ -109,6 +107,8 @@ func run(direction: Vector2, delta: float) -> void:
 func shovel_swing() -> void:
 	# Play the sound effect and lock input
 	lock_input = true
+	sprite_ref.play("shovel swing")
+	is_swinging = true
 	$SfxController.play(swing_sfx)
 	
 	# Create the hitbox and assign necessary damage variables
@@ -122,9 +122,13 @@ func shovel_swing() -> void:
 	add_child(hitbox)
 	
 	#reenable input when attack fades
-	await get_tree().create_timer(swing_dmg_duration).timeout
-	lock_input = false
+	sprite_ref.animation_finished.connect(handle_swing_finished)
 	print_debug(name + " Shovel Swung")
+	
+func handle_swing_finished() -> void:
+	lock_input = false
+	is_swinging = false
+	sprite_ref.animation_finished.disconnect(handle_swing_finished)
 		
 # DAMAGE SYSTEM FUNCTIONS --------------------------------------------------------------------------
 
@@ -133,8 +137,8 @@ func take_damage() -> void:
 	# Lock inputs and interrupt mechanics
 	lock_input = true
 	interrupt_mechanics = true
-	damaged = true
-	sprite_ref.texture = damaged_pose
+	is_damaged = true
+	sprite_ref.play("damaged")
 	
 	# Play damage sound and decrement health
 	print_debug(name + " Damage taken")
@@ -146,7 +150,7 @@ func take_damage() -> void:
 	await get_tree().create_timer(damaged_duration).timeout
 	lock_input = false
 	interrupt_mechanics = false
-	damaged = false
+	is_damaged = false
 	
 	
 ## Pushes the player back depending on given direction

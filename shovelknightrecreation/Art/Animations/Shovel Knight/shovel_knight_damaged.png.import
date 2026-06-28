@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://calbhpd5mqyvu"
-path="res://.godot/imported/shovel_knight_swing.png-280371678e27179ef9e0d24d223a447e.ctex"
+uid="uid://1yflyastlrk2"
+path="res://.godot/imported/shovel_knight_damaged.png-54a183ddb2e613353aa3fde139a8f282.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Animations/shovel_knight_swing.png"
-dest_files=["res://.godot/imported/shovel_knight_swing.png-280371678e27179ef9e0d24d223a447e.ctex"]
+source_file="res://Art/Animations/Shovel Knight/shovel_knight_damaged.png"
+dest_files=["res://.godot/imported/shovel_knight_damaged.png-54a183ddb2e613353aa3fde139a8f282.ctex"]
 
 [params]
 

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://s8ittppw7f3h"
+path="res://.godot/imported/shovel_knight_swing.ase-d2cdc00967a24c104bfdc921544879f4.res"
+
+[deps]
+
+source_file="res://Art/Animations/Shovel Knight/shovel_knight_swing.ase"
+dest_files=["res://.godot/imported/shovel_knight_swing.ase-d2cdc00967a24c104bfdc921544879f4.res"]
+
+[params]
+

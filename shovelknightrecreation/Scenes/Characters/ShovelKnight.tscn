@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dwnla04b14ku2" path="res://Scripts/Characters/shovel_knight.gd" id="1_bcalr"]
 [ext_resource type="AudioStream" uid="uid://cxoagof1phy3f" path="res://Audio/SFX_sk_hit.wav" id="2_8a2qs"]
-[ext_resource type="Texture2D" uid="uid://bll54336jkbk1" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.png" id="2_phpyr"]
 [ext_resource type="AudioStream" uid="uid://cir5s665uefsv" path="res://Audio/SFX_shovel_swing.wav" id="2_xdoyt"]
 [ext_resource type="Texture2D" uid="uid://bddeegs41qa8p" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_damaged.png" id="4_e2k1e"]
 [ext_resource type="PackedScene" uid="uid://ckms3743k0u6i" path="res://Scenes/SfxController.tscn" id="4_syip6"]
 [ext_resource type="Script" uid="uid://lugw7yd8wuqv" path="res://Scripts/Characters/Attacks/hurtbox.gd" id="5_yebmr"]
+[ext_resource type="SpriteFrames" uid="uid://d5ojgjlcor3h" path="res://Art/Animations/Shovel Knight/shovel_knight_anims.tres" id="8_e2k1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phpyr"]
 size = Vector2(30, 30)
@@ -34,12 +34,6 @@ damaged_pose = ExtResource("4_e2k1e")
 position = Vector2(-5, -77.5)
 shape = SubResource("RectangleShape2D_3fvme")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=423785334]
-position = Vector2(-85, -155)
-scale = Vector2(5, 5)
-texture = ExtResource("2_phpyr")
-centered = false
-
 [node name="SfxController" parent="." unique_id=708739224 instance=ExtResource("4_syip6")]
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=363010613]
@@ -53,3 +47,10 @@ metadata/_custom_type_script = "uid://lugw7yd8wuqv"
 position = Vector2(-5.000003, -77.50001)
 shape = SubResource("RectangleShape2D_ymhp6")
 debug_color = Color(0.87477976, 0.3321475, 0.2584936, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=667771656]
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("8_e2k1e")
+animation = &"shovel swing"
+centered = false
+offset = Vector2(-36, -57)
