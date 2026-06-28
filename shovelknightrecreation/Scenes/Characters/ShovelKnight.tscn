@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://b5odb6skbgnpv"]
 
 [ext_resource type="Script" uid="uid://dwnla04b14ku2" path="res://Scripts/Characters/shovel_knight.gd" id="1_bcalr"]
+[ext_resource type="AudioStream" uid="uid://cxoagof1phy3f" path="res://Audio/SFX_sk_hit.wav" id="2_8a2qs"]
 [ext_resource type="Texture2D" uid="uid://bll54336jkbk1" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.png" id="2_phpyr"]
 [ext_resource type="AudioStream" uid="uid://cir5s665uefsv" path="res://Audio/SFX_shovel_swing.wav" id="2_xdoyt"]
+[ext_resource type="Texture2D" uid="uid://bddeegs41qa8p" path="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_damaged.png" id="4_e2k1e"]
 [ext_resource type="PackedScene" uid="uid://ckms3743k0u6i" path="res://Scenes/SfxController.tscn" id="4_syip6"]
 [ext_resource type="Script" uid="uid://lugw7yd8wuqv" path="res://Scripts/Characters/Attacks/hurtbox.gd" id="5_yebmr"]
 
@@ -20,11 +22,13 @@ scale = Vector2(0.6, 0.6)
 script = ExtResource("1_bcalr")
 movement_speed = 300.0
 attack_group = &"player_attack"
+damaged_sfx = ExtResource("2_8a2qs")
 swing_shape = SubResource("RectangleShape2D_phpyr")
 swing_enemy_knockback = 300.0
 swing_self_knockback = 300.0
 swing_x_offset = 100.0
 swing_sfx = ExtResource("2_xdoyt")
+damaged_pose = ExtResource("4_e2k1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=876146725]
 position = Vector2(-5, -77.5)
