@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 ## Plays when another area enters this one
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group(monitored_group):
+	if area.is_in_group(monitored_group) and area.has_method("deal_damage"):
 		print("Hit connected with " + get_parent().name)
-	pass
-	
+		area.deal_damage(self)
+		

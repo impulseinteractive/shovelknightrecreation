@@ -7,13 +7,8 @@ func _ready() -> void:
 	super()
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	# Debugging actions for health functions
-	if Input.is_action_just_pressed("move_left"):
-		take_damage()
-	
-	
-	if Input.is_action_just_pressed("move_right"):
+func _process(delta: float) -> void:	
+	if Input.is_action_just_pressed("crouch"):
 		restore_to_full_health(0.2)
 	
 	pass
