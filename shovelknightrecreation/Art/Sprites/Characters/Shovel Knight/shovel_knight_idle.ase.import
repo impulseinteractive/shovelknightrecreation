@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b7tyvr1wggcnn"
+path="res://.godot/imported/shovel_knight_idle.ase-52e8fd33ba9372b047c30fef77dabbf3.res"
+
+[deps]
+
+source_file="res://Art/Sprites/Characters/Shovel Knight/shovel_knight_idle.ase"
+dest_files=["res://.godot/imported/shovel_knight_idle.ase-52e8fd33ba9372b047c30fef77dabbf3.res"]
+
+[params]
+
