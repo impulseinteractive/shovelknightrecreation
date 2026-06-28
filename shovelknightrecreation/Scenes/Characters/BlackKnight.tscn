@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://ckms3743k0u6i" path="res://Scenes/SfxController.tscn" id="4_wbrs2"]
 [ext_resource type="Script" uid="uid://bmkdlfexxkvsn" path="res://Scripts/Characters/Attacks/hitbox.gd" id="7_6vsk3"]
 [ext_resource type="SpriteFrames" uid="uid://ytnfptfbn1er" path="res://Art/Animations/Black Knight/black_knight_anims.tres" id="8_04htf"]
+[ext_resource type="PackedScene" uid="uid://bt8tt6anp0nf3" path="res://Scenes/Characters/BlackKnightBeehaveTree.tscn" id="8_26q1u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eufk"]
+size = Vector2(30, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7s2"]
 size = Vector2(110, 165)
@@ -32,7 +36,12 @@ script = ExtResource("1_vuakd")
 contact_knockback = 300.0
 movement_speed = 300.0
 max_health = 12
+attack_group = &"enemy_attack"
 damaged_sfx = ExtResource("2_a1tgm")
+swing_shape = SubResource("RectangleShape2D_8eufk")
+swing_enemy_knockback = 300.0
+swing_self_knockback = 300.0
+swing_x_offset = 100.0
 swing_sfx = ExtResource("3_6vsk3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2082938975]
@@ -104,3 +113,11 @@ scale = Vector2(5, 5)
 sprite_frames = ExtResource("8_04htf")
 centered = false
 offset = Vector2(-16.415, -43.29)
+
+[node name="BlackKnightBeehaveTree" parent="." unique_id=904135487 instance=ExtResource("8_26q1u")]
+
+[node name="BeehaveTree" parent="BlackKnightBeehaveTree" index="1" unique_id=1662199981 node_paths=PackedStringArray("actor")]
+actor_node_path = NodePath("../..")
+actor = NodePath("../..")
+
+[editable path="BlackKnightBeehaveTree"]
