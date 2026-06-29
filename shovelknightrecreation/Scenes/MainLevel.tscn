@@ -17,7 +17,6 @@ position = Vector2(0, 624)
 
 [node name="BlackKnight" parent="." unique_id=197894674 instance=ExtResource("3_o15vh")]
 position = Vector2(1024, 624)
-look_direction = Vector2(-1, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=898548762]
 

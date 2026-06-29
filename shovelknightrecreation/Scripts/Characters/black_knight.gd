@@ -31,6 +31,13 @@ func _ready() -> void:
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:	
 	super(delta)
+	if look_direction == Vector2.LEFT:
+		contact_hitboxes["right"].attack_direction = Vector2.LEFT
+		contact_hitboxes["left"].attack_direction = Vector2.RIGHT
+	elif look_direction == Vector2.RIGHT:
+		contact_hitboxes["right"].attack_direction = Vector2.RIGHT
+		contact_hitboxes["left"].attack_direction = Vector2.LEFT
+		
 
 # Resolves inputs for the Black Knight
 func handle_input(delta: float) -> void:
