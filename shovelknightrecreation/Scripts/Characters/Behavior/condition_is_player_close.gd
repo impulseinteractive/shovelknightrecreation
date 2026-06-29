@@ -20,14 +20,5 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	# Check if player is within detection range
 	if distance > player_detection_range:
 		return FAILURE
-	
-	## Check if player is within vision cone
-	#var forward_dir = Vector2.RIGHT.rotated(actor.rotation)
-	#var angle_to_player = forward_dir.angle_to(to_player.normalized())
-	#if abs(angle_to_player) > deg_to_rad(vision_cone_angle):
-		#return FAILURE
-	
-	# Player is visible, save position in blackboard
-	blackboard.set_value("player_position", player.global_position)
-	blackboard.set_value("player_detected", true)
+
 	return SUCCESS

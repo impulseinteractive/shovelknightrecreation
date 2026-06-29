@@ -7,7 +7,6 @@ extends ActionLeaf
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	# Get the player position from the blackboard
-	#var player_pos = blackboard.get_value("player_position")
 	var player: Knight = get_tree().get_first_node_in_group("player")
 
 	if not player:
@@ -20,12 +19,12 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	# Move toward player
 	var knight_actor: Knight = actor
 	knight_actor.run(direction, get_physics_process_delta_time())
-	print("[BEEHAVE BK LOOK DIRECTION] ", knight_actor.look_direction)
 
 	# Check if within attack range, only check x values because only care about horizontal positioning
 	var distance = knight_actor.global_position.x - player.global_position.x
 	
 	if distance >= retreat_distance:
+		blackboard.set_value("retreat_probability", 0.0)
 		return SUCCESS
 	
 	# Still chasing
