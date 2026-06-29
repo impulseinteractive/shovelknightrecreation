@@ -19,6 +19,8 @@ var is_immune: bool = false ## Whether Shovel Knight is immune to damage
 @export_category("Visuals")
 @export var iframe_flash_interval: float = 0.1 ## How frequently the sprite flashes in i-frames
 
+var flash_timer: Timer ## Timer for flashing the sprite
+
 #---------------------------------------------------------------------------------------------------
 
 ## Called when the node enters the scene tree for the first time.
@@ -79,17 +81,24 @@ func take_damage() -> void:
 ## Broadcasts fail state on Shovel Knight death
 func death() -> void:
 	level_manager.state_changed.emit(LevelStateManager.LevelState.LEVEL_FAILURE)
-	
+
+## Begins invincibility frames of Shovel Knight
 func start_iframes() -> void:
-	is_immune = true
 	hurtbox_ref.set_deferred("monitoring", false)
 	get_tree().create_timer(iframe_duration).timeout.connect(end_iframes)
 	
-	while is_immune:
-		sprite_ref.visible = not sprite_ref.visible
-		await get_tree().create_timer(iframe_flash_interval).timeout
-	
+	# Repeating timer to flash iframes
+	flash_timer = Timer.new()
+	flash_timer.wait_time = iframe_flash_interval
+	flash_timer.one_shot = false
+	flash_timer.timeout.connect(func(): 
+			sprite_ref.visible = not sprite_ref.visible)
+	add_child(flash_timer)
+	flash_timer.start()
+
+## Ends invincibility frames of Shovel Knight	
 func end_iframes() -> void:
-	is_immune = false
 	sprite_ref.visible = true
+	flash_timer.queue_free()
 	hurtbox_ref.set_deferred("monitoring", true)
+	
