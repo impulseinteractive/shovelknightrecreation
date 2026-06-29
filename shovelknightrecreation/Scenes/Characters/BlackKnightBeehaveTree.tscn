@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://cb1nl2oayl254" path="res://Scripts/Characters/Behavior/condition_is_hit.gd" id="5_cgfvq"]
 [ext_resource type="Script" uid="uid://dme5f24l0edsf" path="res://addons/beehave/blackboard.gd" id="5_ntb8i"]
 [ext_resource type="Script" uid="uid://btuoej5etvxpk" path="res://Scripts/Characters/Behavior/action_approach_player.gd" id="6_eyrh7"]
-[ext_resource type="Script" uid="uid://bc7ll5wytbk1n" path="res://Scripts/Characters/Behavior/action_play_animation.gd" id="6_sfreo"]
 [ext_resource type="Script" uid="uid://bc7puitbqj2g1" path="res://Scripts/Characters/Behavior/action_shovel_swing_action.gd" id="7_r5spv"]
 [ext_resource type="Script" uid="uid://cdo57fpapc1bn" path="res://Scripts/Characters/Behavior/action_toggle_blackboard_bool.gd" id="7_xxb77"]
 [ext_resource type="Script" uid="uid://cnrx5ex8kbj2n" path="res://Scripts/Characters/Behavior/condition_start_idle.gd" id="8_aa5yt"]
@@ -52,10 +51,6 @@ metadata/_custom_type_script = "uid://dcojdhvj8qcw0"
 [node name="IsHit" type="Node" parent="BeehaveTree/MainSelector/SequenceReactiveIsHit" unique_id=918410517]
 script = ExtResource("5_cgfvq")
 metadata/_custom_type_script = "uid://cb1nl2oayl254"
-
-[node name="PlayAnimation" type="Node" parent="BeehaveTree/MainSelector/SequenceReactiveIsHit" unique_id=1035418746]
-script = ExtResource("6_sfreo")
-metadata/_custom_type_script = "uid://bc7ll5wytbk1n"
 
 [node name="ToggleBlackboardBool-IsHit" type="Node" parent="BeehaveTree/MainSelector/SequenceReactiveIsHit" unique_id=596866422]
 script = ExtResource("7_xxb77")
