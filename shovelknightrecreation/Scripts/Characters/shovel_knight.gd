@@ -41,8 +41,6 @@ func _ready() -> void:
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	super(delta)
-	if Input.is_action_just_pressed("crouch"):
-		take_damage()
 	pass
 	
 ## Resolves all shovel knight inputs

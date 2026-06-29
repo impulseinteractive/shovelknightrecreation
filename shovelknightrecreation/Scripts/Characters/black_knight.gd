@@ -31,12 +31,12 @@ func _ready() -> void:
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:	
 	super(delta)
-
-# Resolves inputs for the Black Knight
-func handle_input(delta: float) -> void:
-	# Debug action for restoring health
-	if Input.is_action_just_pressed("crouch"):
-		restore_to_full_health(0.2)
+	if look_direction == Vector2.LEFT:
+		contact_hitboxes["right"].attack_direction = Vector2.LEFT
+		contact_hitboxes["left"].attack_direction = Vector2.RIGHT
+	elif look_direction == Vector2.RIGHT:
+		contact_hitboxes["right"].attack_direction = Vector2.RIGHT
+		contact_hitboxes["left"].attack_direction = Vector2.LEFT
 		
 # MOVEMENT FUNCTIONS -------------------------------------------------------------------------------
 func is_idle() -> bool:
