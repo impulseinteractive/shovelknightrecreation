@@ -47,9 +47,10 @@ shape = SubResource("RectangleShape2D_ymhp6")
 debug_color = Color(0.87477976, 0.3321475, 0.2584936, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=667771656]
+position = Vector2(-8.333334, 0)
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("8_e2k1e")
-animation = &"shovel swing"
+animation = &"idle"
 autoplay = "idle"
 centered = false
 offset = Vector2(-36, -57)
