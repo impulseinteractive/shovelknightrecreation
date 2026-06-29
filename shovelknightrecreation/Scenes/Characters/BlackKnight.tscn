@@ -72,6 +72,18 @@ offset = Vector2(-36, -57)
 
 [node name="BlackKnightBeehaveTree" parent="." unique_id=904135487 instance=ExtResource("8_26q1u")]
 
+[node name="Blackboard" parent="BlackKnightBeehaveTree" index="0" unique_id=1007674850]
+blackboard = {
+"attack_range": 100.0,
+"idle_probability": 0.2,
+"idle_time": 2.5,
+"is_dead": false,
+"is_hit": false,
+"is_idle": false,
+"player_detection_range": 1280.0,
+"retreat_probability": 0.0
+}
+
 [node name="BeehaveTree" parent="BlackKnightBeehaveTree" index="1" unique_id=1662199981 node_paths=PackedStringArray("actor")]
 actor_node_path = NodePath("../..")
 actor = NodePath("../..")

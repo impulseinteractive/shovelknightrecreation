@@ -2,7 +2,7 @@ extends Node
 
 @onready var players := get_children()
 
-func play(sound: AudioStream, volume_db := 0.0):
+func play(sound: AudioStream, volume_db := -5.0):
 	if sound == null:
 		return
 

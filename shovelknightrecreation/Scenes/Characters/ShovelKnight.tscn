@@ -8,7 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://d5ojgjlcor3h" path="res://Art/Animations/Shovel Knight/shovel_knight_anims.tres" id="8_e2k1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phpyr"]
-size = Vector2(30, 30)
+size = Vector2(115, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fvme"]
 size = Vector2(120, 155)
@@ -26,6 +26,7 @@ swing_shape = SubResource("RectangleShape2D_phpyr")
 swing_enemy_knockback = 300.0
 swing_self_knockback = 300.0
 swing_x_offset = 100.0
+swing_y_offset = -40.0
 swing_sfx = ExtResource("2_xdoyt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=876146725]
