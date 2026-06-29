@@ -7,8 +7,6 @@ extends Knight
 
 var contact_hitboxes: Dictionary[String, Hitbox] = {}
 
-var contact_hitbox_x: Dictionary[String, float] = {}
-
 ## Called when the node enters the scene tree for the first time.s
 func _ready() -> void:
 	if find_child("ContactHitboxUp") is Hitbox:
@@ -27,7 +25,6 @@ func _ready() -> void:
 		
 	for hb in contact_hitboxes:
 		contact_hitboxes[hb].enemy_knockback = contact_knockback
-		contact_hitbox_x[hb] = contact_hitboxes[hb].position.x
 		
 	super()
 
@@ -43,7 +40,7 @@ func handle_input(delta: float) -> void:
 		
 # MOVEMENT FUNCTIONS -------------------------------------------------------------------------------
 func is_idle() -> bool:
-	return false
+	return find_child("Blackboard").get_value("is_idle")
 	
 ## Handles movement input for the Black Knight
 func run(direction: Vector2, delta: float) -> void:
@@ -55,6 +52,12 @@ func run(direction: Vector2, delta: float) -> void:
 				velocity = Vector2(0, velocity.y)	
 			
 # COMBAT FUNCTIONS ---------------------------------------------------------------------------------
+## Removes health equal to incoming damage
+func take_damage() -> void:
+	super.take_damage()
+	find_child("Blackboard").set_value("is_hit", true)
+	
+	
 ## Broadcasts success state on Black Knight death
 func death() -> void:
 	level_manager.state_changed.emit(LevelStateManager.LevelState.LEVEL_SUCCESS)
