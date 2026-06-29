@@ -25,12 +25,13 @@
 script = ExtResource("5_ntb8i")
 blackboard = {
 "attack_range": 150.0,
-"idle_probability": 0.15,
+"idle_probability": 0.2,
 "idle_time": 2.5,
 "is_dead": false,
 "is_hit": false,
 "is_idle": false,
-"retreat_probability": 0.5
+"player_detection_range": 1280.0,
+"retreat_probability": 0.0
 }
 metadata/_custom_type_script = "uid://dme5f24l0edsf"
 
@@ -104,7 +105,6 @@ metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
 [node name="IsPlayerClose" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=274735669]
 script = ExtResource("5_7x4vc")
-player_detection_range = 600.0
 metadata/_custom_type_script = "uid://ddxvsgxbyioof"
 
 [node name="PrintMessage" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=121182504]
