@@ -2,10 +2,27 @@
 
 [ext_resource type="Texture2D" uid="uid://c2v033mi832bi" path="res://Art/Sprites/Characters/Black Knight/black_knight_idle.png" id="1_hd5ny"]
 [ext_resource type="Texture2D" uid="uid://ye3c7ociopmv" path="res://Art/Sprites/Characters/Black Knight/black_knight_damaged.png" id="1_jvhe4"]
+[ext_resource type="Texture2D" uid="uid://b6xswa24xckdk" path="res://Art/Sprites/Characters/Black Knight/black_knight_shovel_swing.png" id="3_jvhe4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2k0sw"]
 atlas = ExtResource("1_jvhe4")
 region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2oibm"]
+atlas = ExtResource("3_jvhe4")
+region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdjcd"]
+atlas = ExtResource("3_jvhe4")
+region = Rect2(75, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah1q4"]
+atlas = ExtResource("3_jvhe4")
+region = Rect2(150, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwuat"]
+atlas = ExtResource("3_jvhe4")
+region = Rect2(225, 0, 75, 75)
 
 [resource]
 animations = [{
@@ -30,8 +47,20 @@ animations = [{
 "name": &"running",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2oibm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdjcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah1q4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwuat")
+}],
+"loop": false,
 "name": &"shovel swing",
-"speed": 5.0
+"speed": 20.0
 }]

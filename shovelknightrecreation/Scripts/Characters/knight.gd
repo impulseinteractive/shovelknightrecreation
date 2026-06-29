@@ -11,11 +11,11 @@ var collision_shape_x: float                  ## default x pos of the collision 
 
 # MOVEMENT VARS ------------------------------------------------------------------------------------
 @export_category("Movement")
-@export var movement_speed: float = 200.0           ## Max running speed of the knight
-@export var movement_acceleration: float = 500.0    ## Ramp up speed of knight running
+@export var movement_speed: float = 200.0           ## Max is_running speed of the knight
+@export var movement_acceleration: float = 500.0    ## Ramp up speed of knight is_running
 @export var look_direction: Vector2 = Vector2.RIGHT ## The direction the knight is looking
 
-var running: bool = false ## Whether the knight is running
+var is_running: bool = false ## Whether the knight is runningx
 
 # COMBAT VARS --------------------------------------------------------------------------------------
 @export_category("Combat")
@@ -56,22 +56,27 @@ func _ready() -> void:
 	current_health = max_health
 	print_debug(name + " Health set to " + str(current_health))
 
+## Called every idle frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if is_idle():
+		sprite_ref.play("idle")
+	
 ## Called every physics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	# Resolve inputs if input is not locked
 	if not lock_input:
 		handle_input(delta)
 	
-	# Come to a sharp stop when character stops running
-	if not running:
+	# Come to a sharp stop when character stops is_running
+	if not is_running:
 		velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
 		
 	# Handle gravity's effect on the knight
 	velocity.y = move_toward(velocity.y, terminal_velocity, get_gravity().y * delta)
 		
 	move_and_slide()
-	# Reset the running flag
-	running = false
+	# Reset the is_running flag
+	is_running = false
 	
 	# Flip necessary components when character turns around
 	if look_direction == Vector2.LEFT:
@@ -90,10 +95,15 @@ func handle_input(delta: float) -> void:
 	pass
 
 #MOVEMENT FUNCTIONS --------------------------------------------------------------------------------
+func is_idle() -> bool:
+	return true
+
 ## Character movement function that takes Vector2.LEFT (-1, 0) or Vector2.RIGHT (1, 0) as directional
 func run(direction: Vector2, delta: float) -> void:
-	running = true
-	
+	if is_on_floor() and not is_running:
+		sprite_ref.play("running")
+		is_running = true
+		
 	velocity.x = move_toward(velocity.x, movement_speed * direction.x, 
 			movement_acceleration * delta)
 	

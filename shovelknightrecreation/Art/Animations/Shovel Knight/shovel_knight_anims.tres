@@ -102,7 +102,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shovel swing",
-"speed": 25.0
+"speed": 20.0
 }]
 metadata/_aseprite_wizard_source_file_hash_ = "99e33bc4163dc15124804793d2f9f2f3"
 metadata/_aseprite_wizard_config_ = {

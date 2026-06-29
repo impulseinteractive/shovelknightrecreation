@@ -40,7 +40,11 @@ func handle_input(delta: float) -> void:
 	# Debug action for restoring health
 	if Input.is_action_just_pressed("crouch"):
 		restore_to_full_health(0.2)
+		
 # MOVEMENT FUNCTIONS -------------------------------------------------------------------------------
+func is_idle() -> bool:
+	return is_on_floor() and (not is_swinging) and (not is_damaged)
+	
 ## Handles movement input for the Black Knight
 func run(direction: Vector2, delta: float) -> void:
 	super(direction, delta)

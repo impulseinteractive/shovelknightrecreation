@@ -50,6 +50,10 @@ func handle_input(delta: float) -> void:
 	
 # MOVEMENT FUNCTIONS -------------------------------------------------------------------------------
 ## Handles movement input for the Shovel Knight
+
+func is_idle() -> bool:
+	return is_on_floor() and (not is_swinging) and (not is_damaged) and (not Input.is_anything_pressed())
+
 func run(direction: Vector2, delta: float) -> void:
 	if not pivoting:
 		super(direction, delta)
