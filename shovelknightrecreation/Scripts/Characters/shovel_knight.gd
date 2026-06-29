@@ -26,6 +26,15 @@ var flash_timer: Timer ## Timer for flashing the sprite
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	
+	# Define the flash timer for i-frames
+	flash_timer = Timer.new()
+	flash_timer.wait_time = iframe_flash_interval
+	flash_timer.one_shot = false
+	flash_timer.timeout.connect(func(): 
+			sprite_ref.visible = not sprite_ref.visible)
+	add_child(flash_timer)
+	
 	if has_node("Hurtbox") and get_node("Hurtbox") is Hurtbox:
 		hurtbox_ref = $Hurtbox
 
@@ -88,17 +97,11 @@ func start_iframes() -> void:
 	get_tree().create_timer(iframe_duration).timeout.connect(end_iframes)
 	
 	# Repeating timer to flash iframes
-	flash_timer = Timer.new()
-	flash_timer.wait_time = iframe_flash_interval
-	flash_timer.one_shot = false
-	flash_timer.timeout.connect(func(): 
-			sprite_ref.visible = not sprite_ref.visible)
-	add_child(flash_timer)
 	flash_timer.start()
 
 ## Ends invincibility frames of Shovel Knight	
 func end_iframes() -> void:
 	sprite_ref.visible = true
-	flash_timer.queue_free()
+	flash_timer.stop()
 	hurtbox_ref.set_deferred("monitoring", true)
 	

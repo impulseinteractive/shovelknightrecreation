@@ -31,3 +31,16 @@ metadata/_custom_type_script = "uid://bmkdlfexxkvsn"
 position = Vector2(-15, -165.00002)
 shape = SubResource("RectangleShape2D_fsxw8")
 debug_color = Color(0.86920637, 0.18200374, 0.74174875, 0.41960785)
+
+[node name="ContactHitboxUp2" type="Area2D" parent="ContactHitboxUp2" unique_id=910214978 groups=["enemy_attack"]]
+position = Vector2(6, -26)
+collision_layer = 2147483648
+collision_mask = 0
+script = ExtResource("7_4q26a")
+group = &"enemy_attack"
+metadata/_custom_type_script = "uid://bmkdlfexxkvsn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitboxUp2/ContactHitboxUp2" unique_id=693386430]
+position = Vector2(-15, -165.00002)
+shape = SubResource("RectangleShape2D_fsxw8")
+debug_color = Color(0.86920637, 0.18200374, 0.74174875, 0.41960785)
