@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bt8tt6anp0nf3" path="res://Scenes/Characters/BlackKnightBeehaveTree.tscn" id="8_26q1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8eufk"]
-size = Vector2(30, 30)
+size = Vector2(115, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7s2"]
 size = Vector2(110, 165)
@@ -42,6 +42,7 @@ swing_shape = SubResource("RectangleShape2D_8eufk")
 swing_enemy_knockback = 300.0
 swing_self_knockback = 300.0
 swing_x_offset = 100.0
+swing_y_offset = -40.0
 swing_sfx = ExtResource("3_6vsk3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2082938975]

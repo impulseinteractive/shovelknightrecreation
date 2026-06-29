@@ -91,5 +91,5 @@ animations = [{
 }],
 "loop": false,
 "name": &"shovel swing",
-"speed": 20.0
+"speed": 12.0
 }]
