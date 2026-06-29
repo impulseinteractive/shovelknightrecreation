@@ -38,13 +38,6 @@ func _physics_process(delta: float) -> void:
 		contact_hitboxes["right"].attack_direction = Vector2.RIGHT
 		contact_hitboxes["left"].attack_direction = Vector2.LEFT
 		
-
-# Resolves inputs for the Black Knight
-func handle_input(delta: float) -> void:
-	# Debug action for restoring health
-	if Input.is_action_just_pressed("crouch"):
-		restore_to_full_health(0.2)
-		
 # MOVEMENT FUNCTIONS -------------------------------------------------------------------------------
 func is_idle() -> bool:
 	return find_child("Blackboard").get_value("is_idle")
