@@ -22,7 +22,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	var knight_actor: Knight = actor
 	knight_actor.run(direction, get_physics_process_delta_time())
 
-	
 	# Check if within attack range, only check x values because only care about horizontal positioning
 	var distance = knight_actor.global_position.x - player.global_position.x
 	

@@ -11,14 +11,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	# Enforce knight class on actor variable
 	var knight_actor: Knight = actor
 	
-	# Check if cooldown has elapsed
-	if time_since_last_attack < attack_cooldown:
-		time_since_last_attack += get_physics_process_delta_time()
-		return RUNNING
-	
-	# Reset cooldown
-	time_since_last_attack = 0.0
-	
 	# Perform attack
 	print("Enemy attacks player!")
 	knight_actor.shovel_swing()

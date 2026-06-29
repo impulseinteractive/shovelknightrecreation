@@ -10,8 +10,11 @@
 [ext_resource type="Script" uid="uid://btuoej5etvxpk" path="res://Scripts/Characters/Behavior/action_approach_player.gd" id="6_eyrh7"]
 [ext_resource type="Script" uid="uid://bc7ll5wytbk1n" path="res://Scripts/Characters/Behavior/action_play_animation.gd" id="6_sfreo"]
 [ext_resource type="Script" uid="uid://bc7puitbqj2g1" path="res://Scripts/Characters/Behavior/action_shovel_swing_action.gd" id="7_r5spv"]
+[ext_resource type="Script" uid="uid://cdo57fpapc1bn" path="res://Scripts/Characters/Behavior/action_toggle_blackboard_bool.gd" id="7_xxb77"]
+[ext_resource type="Script" uid="uid://cnrx5ex8kbj2n" path="res://Scripts/Characters/Behavior/condition_start_idle.gd" id="8_aa5yt"]
 [ext_resource type="Script" uid="uid://dh1scp6jrebut" path="res://Scripts/Characters/Behavior/action_print_message.gd" id="8_eyrh7"]
 [ext_resource type="Script" uid="uid://qm2alfofdh6y" path="res://Scripts/Characters/Behavior/condition_start_retreat.gd" id="9_0sisf"]
+[ext_resource type="Script" uid="uid://bt7gq7wo6tw5o" path="res://Scripts/Characters/Behavior/action_idle.gd" id="9_3lm2k"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="9_sxbeq"]
 [ext_resource type="Script" uid="uid://41iym3iehqvg" path="res://Scripts/Characters/Behavior/action_retreat.gd" id="13_cgfvq"]
 [ext_resource type="Script" uid="uid://mxofnrdivj3u" path="res://Scripts/Characters/Behavior/action_adjust_retreat_probability.gd" id="14_sfreo"]
@@ -22,8 +25,11 @@
 script = ExtResource("5_ntb8i")
 blackboard = {
 "attack_range": 150.0,
+"idle_probability": 0.15,
+"idle_time": 2.5,
 "is_dead": false,
 "is_hit": false,
+"is_idle": false,
 "retreat_probability": 0.0
 }
 metadata/_custom_type_script = "uid://dme5f24l0edsf"
@@ -50,6 +56,28 @@ metadata/_custom_type_script = "uid://cb1nl2oayl254"
 script = ExtResource("6_sfreo")
 metadata/_custom_type_script = "uid://bc7ll5wytbk1n"
 
+[node name="ToggleBlackboardBool-IsHit" type="Node" parent="BeehaveTree/MainSelector/SequenceReactiveIsHit" unique_id=596866422]
+script = ExtResource("7_xxb77")
+blackboard_key = "is_hit"
+metadata/_custom_type_script = "uid://cdo57fpapc1bn"
+
+[node name="SequenceIdle" type="Node" parent="BeehaveTree/MainSelector" unique_id=1659632898]
+script = ExtResource("4_psloy")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="IsIdling" type="Node" parent="BeehaveTree/MainSelector/SequenceIdle" unique_id=1267051544]
+script = ExtResource("8_aa5yt")
+metadata/_custom_type_script = "uid://cnrx5ex8kbj2n"
+
+[node name="Idle" type="Node" parent="BeehaveTree/MainSelector/SequenceIdle" unique_id=958130025]
+script = ExtResource("9_3lm2k")
+metadata/_custom_type_script = "uid://bt7gq7wo6tw5o"
+
+[node name="ToggleBlackboardBool-IsIdle" type="Node" parent="BeehaveTree/MainSelector/SequenceIdle" unique_id=417022147]
+script = ExtResource("7_xxb77")
+blackboard_key = "is_idle"
+metadata/_custom_type_script = "uid://cdo57fpapc1bn"
+
 [node name="RetreatDelay" type="Node" parent="BeehaveTree/MainSelector" unique_id=1963140539]
 script = ExtResource("9_sxbeq")
 wait_time = 0.5
@@ -62,16 +90,6 @@ metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 [node name="IsRetreating" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=504946436]
 script = ExtResource("9_0sisf")
 metadata/_custom_type_script = "uid://qm2alfofdh6y"
-
-[node name="PrintMessage" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=1214521786]
-script = ExtResource("8_eyrh7")
-message = "Hello"
-metadata/_custom_type_script = "uid://dh1scp6jrebut"
-
-[node name="PrintMessage2" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=502249543]
-script = ExtResource("8_eyrh7")
-message = "I a runaway"
-metadata/_custom_type_script = "uid://dh1scp6jrebut"
 
 [node name="Retreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=1899886849]
 script = ExtResource("13_cgfvq")
