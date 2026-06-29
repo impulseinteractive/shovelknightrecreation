@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_iakn2"]
 [ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="3_ntb8i"]
+[ext_resource type="Script" uid="uid://bkr7qj44253ue" path="res://addons/beehave/nodes/composites/simple_parallel.gd" id="4_0raye"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_psloy"]
 [ext_resource type="Script" uid="uid://dcojdhvj8qcw0" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="4_r5spv"]
 [ext_resource type="Script" uid="uid://ddxvsgxbyioof" path="res://Scripts/Characters/Behavior/condition_is_player_close.gd" id="5_7x4vc"]
@@ -41,86 +42,94 @@ blackboard = NodePath("../Blackboard")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
-[node name="MainSelector" type="Node" parent="BeehaveTree" unique_id=1300559981]
+[node name="ParallelMonitorInterruptAndCombat" type="Node" parent="BeehaveTree" unique_id=1368476256]
+script = ExtResource("4_0raye")
+metadata/_custom_type_script = "uid://bkr7qj44253ue"
+
+[node name="InterruptSelector" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat" unique_id=1900888205]
 script = ExtResource("3_ntb8i")
 metadata/_custom_type_script = "uid://8hn4kne15ac5"
 
-[node name="SequenceReactiveIsHit" type="Node" parent="BeehaveTree/MainSelector" unique_id=1996392253]
+[node name="SequenceReactiveIsHit" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/InterruptSelector" unique_id=1996392253]
 script = ExtResource("4_r5spv")
 metadata/_custom_type_script = "uid://dcojdhvj8qcw0"
 
-[node name="IsHit" type="Node" parent="BeehaveTree/MainSelector/SequenceReactiveIsHit" unique_id=918410517]
+[node name="IsHit" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/InterruptSelector/SequenceReactiveIsHit" unique_id=918410517]
 script = ExtResource("5_cgfvq")
 metadata/_custom_type_script = "uid://cb1nl2oayl254"
 
-[node name="ToggleBlackboardBool-IsHit" type="Node" parent="BeehaveTree/MainSelector/SequenceReactiveIsHit" unique_id=596866422]
+[node name="ToggleBlackboardBool-IsHit" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/InterruptSelector/SequenceReactiveIsHit" unique_id=596866422]
 script = ExtResource("7_xxb77")
 blackboard_key = "is_hit"
 metadata/_custom_type_script = "uid://cdo57fpapc1bn"
 
-[node name="SequenceIdle" type="Node" parent="BeehaveTree/MainSelector" unique_id=1659632898]
+[node name="CombatSelector" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat" unique_id=1218045164]
+script = ExtResource("3_ntb8i")
+metadata/_custom_type_script = "uid://8hn4kne15ac5"
+
+[node name="SequenceIdle" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector" unique_id=1659632898]
 script = ExtResource("4_psloy")
 metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
-[node name="IsIdling" type="Node" parent="BeehaveTree/MainSelector/SequenceIdle" unique_id=1267051544]
+[node name="IsIdling" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/SequenceIdle" unique_id=1267051544]
 script = ExtResource("8_aa5yt")
 metadata/_custom_type_script = "uid://cnrx5ex8kbj2n"
 
-[node name="Idle" type="Node" parent="BeehaveTree/MainSelector/SequenceIdle" unique_id=958130025]
+[node name="Idle" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/SequenceIdle" unique_id=958130025]
 script = ExtResource("9_3lm2k")
 metadata/_custom_type_script = "uid://bt7gq7wo6tw5o"
 
-[node name="ToggleBlackboardBool-IsIdle" type="Node" parent="BeehaveTree/MainSelector/SequenceIdle" unique_id=417022147]
+[node name="ToggleBlackboardBool-IsIdle" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/SequenceIdle" unique_id=417022147]
 script = ExtResource("7_xxb77")
 blackboard_key = "is_idle"
 metadata/_custom_type_script = "uid://cdo57fpapc1bn"
 
-[node name="RetreatDelay" type="Node" parent="BeehaveTree/MainSelector" unique_id=1963140539]
+[node name="RetreatDelay" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector" unique_id=1963140539]
 script = ExtResource("9_sxbeq")
 wait_time = 0.5
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
-[node name="SequenceReactiveRetreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay" unique_id=1580639059]
+[node name="SequenceReactiveRetreat" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/RetreatDelay" unique_id=1580639059]
 script = ExtResource("4_r5spv")
 metadata/_custom_type_script = "uid://dcojdhvj8qcw0"
 
-[node name="IsRetreating" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=504946436]
+[node name="IsRetreating" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=504946436]
 script = ExtResource("9_0sisf")
 metadata/_custom_type_script = "uid://qm2alfofdh6y"
 
-[node name="IsCollidingWall" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=1333886165]
+[node name="IsCollidingWall" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=1333886165]
 script = ExtResource("13_0raye")
 
-[node name="Retreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=1899886849]
+[node name="Retreat" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=1899886849]
 script = ExtResource("13_cgfvq")
 metadata/_custom_type_script = "uid://41iym3iehqvg"
 
-[node name="ShovelSwingDelay" type="Node" parent="BeehaveTree/MainSelector" unique_id=1550535079]
+[node name="ShovelSwingDelay" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector" unique_id=1550535079]
 script = ExtResource("9_sxbeq")
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
-[node name="SequenceChaseAndShovelSwing" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay" unique_id=1863450225]
+[node name="SequenceChaseAndShovelSwing" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/ShovelSwingDelay" unique_id=1863450225]
 script = ExtResource("4_psloy")
 metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
-[node name="IsPlayerClose" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=274735669]
+[node name="IsPlayerClose" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=274735669]
 script = ExtResource("5_7x4vc")
 metadata/_custom_type_script = "uid://ddxvsgxbyioof"
 
-[node name="PrintMessage" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=121182504]
+[node name="PrintMessage" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=121182504]
 script = ExtResource("8_eyrh7")
 message = "ATTACKING>>>>"
 metadata/_custom_type_script = "uid://dh1scp6jrebut"
 
-[node name="ApproachPlayer" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=1992595966]
+[node name="ApproachPlayer" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=1992595966]
 script = ExtResource("6_eyrh7")
 metadata/_custom_type_script = "uid://btuoej5etvxpk"
 
-[node name="ShovelSwingAction" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=2000644119]
+[node name="ShovelSwingAction" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=2000644119]
 script = ExtResource("7_r5spv")
 metadata/_custom_type_script = "uid://bc7puitbqj2g1"
 
-[node name="AdjustRetreatProbability" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=133748160]
+[node name="AdjustRetreatProbability" type="Node" parent="BeehaveTree/ParallelMonitorInterruptAndCombat/CombatSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=133748160]
 script = ExtResource("14_sfreo")
 retreat_probability_delta = 0.5
 metadata/_custom_type_script = "uid://mxofnrdivj3u"

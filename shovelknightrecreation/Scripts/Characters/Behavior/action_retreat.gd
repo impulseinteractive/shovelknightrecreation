@@ -40,4 +40,5 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 
 
 func interrupt(actor: Node, blackboard: Blackboard) -> void:
+	current_retreat_time = 0.0
 	return

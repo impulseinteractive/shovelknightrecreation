@@ -2,9 +2,6 @@
 class_name ApproachPlayer
 extends ActionLeaf
 
-#@export var move_speed: float = 10.0
-#@export var attack_range: float = 150.0
-
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	# Get the player position from the blackboard
