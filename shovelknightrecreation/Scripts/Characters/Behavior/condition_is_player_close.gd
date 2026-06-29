@@ -3,7 +3,7 @@ class_name IsPlayerClose
 extends ConditionLeaf
 
 
-@export var player_detection_range: float = 20.0
+#@export var player_detection_range: float = 20.0
 #@export var vision_cone_angle: float = 45.0  # degrees
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
@@ -18,7 +18,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	print("[BEEHAVE BK] DISTANCE TO PLAYER: ", distance)
 	
 	# Check if player is within detection range
-	if distance > player_detection_range:
+	if distance > blackboard.get_value("player_detection_range"):
 		return FAILURE
 
 	return SUCCESS
