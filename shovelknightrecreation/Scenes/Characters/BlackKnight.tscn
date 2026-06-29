@@ -63,7 +63,7 @@ debug_color = Color(0.79733616, 0.40304694, 0.33685336, 0.41960785)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1449085152]
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("8_04htf")
-animation = &"damaged"
+animation = &"running"
 autoplay = "idle"
 centered = false
 offset = Vector2(-36, -57)

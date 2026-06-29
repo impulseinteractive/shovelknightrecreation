@@ -2,11 +2,24 @@
 
 [ext_resource type="Texture2D" uid="uid://c2v033mi832bi" path="res://Art/Sprites/Characters/Black Knight/black_knight_idle.png" id="1_hd5ny"]
 [ext_resource type="Texture2D" uid="uid://ye3c7ociopmv" path="res://Art/Sprites/Characters/Black Knight/black_knight_damaged.png" id="1_jvhe4"]
+[ext_resource type="Texture2D" uid="uid://23y7o8brrg5u" path="res://Art/Sprites/Characters/Black Knight/black_knight_run.png" id="3_2k0sw"]
 [ext_resource type="Texture2D" uid="uid://b6xswa24xckdk" path="res://Art/Sprites/Characters/Black Knight/black_knight_shovel_swing.png" id="3_jvhe4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2k0sw"]
 atlas = ExtResource("1_jvhe4")
 region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j86h7"]
+atlas = ExtResource("3_2k0sw")
+region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol8gn"]
+atlas = ExtResource("3_2k0sw")
+region = Rect2(75, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ipb8"]
+atlas = ExtResource("3_2k0sw")
+region = Rect2(150, 0, 75, 75)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2oibm"]
 atlas = ExtResource("3_jvhe4")
@@ -23,6 +36,10 @@ region = Rect2(150, 0, 75, 75)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwuat"]
 atlas = ExtResource("3_jvhe4")
 region = Rect2(225, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw2vi"]
+atlas = ExtResource("3_jvhe4")
+region = Rect2(300, 0, 75, 75)
 
 [resource]
 animations = [{
@@ -42,7 +59,16 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j86h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol8gn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ipb8")
+}],
 "loop": true,
 "name": &"running",
 "speed": 5.0
@@ -59,6 +85,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hwuat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rw2vi")
 }],
 "loop": false,
 "name": &"shovel swing",

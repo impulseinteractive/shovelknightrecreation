@@ -43,7 +43,7 @@ func handle_input(delta: float) -> void:
 		
 # MOVEMENT FUNCTIONS -------------------------------------------------------------------------------
 func is_idle() -> bool:
-	return is_on_floor() and (not is_swinging) and (not is_damaged)
+	return false
 	
 ## Handles movement input for the Black Knight
 func run(direction: Vector2, delta: float) -> void:
