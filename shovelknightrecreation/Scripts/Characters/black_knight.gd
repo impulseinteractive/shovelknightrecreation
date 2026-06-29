@@ -7,8 +7,6 @@ extends Knight
 
 var contact_hitboxes: Dictionary[String, Hitbox] = {}
 
-var contact_hitbox_x: Dictionary[String, float] = {}
-
 ## Called when the node enters the scene tree for the first time.s
 func _ready() -> void:
 	if find_child("ContactHitboxUp") is Hitbox:
@@ -27,7 +25,6 @@ func _ready() -> void:
 		
 	for hb in contact_hitboxes:
 		contact_hitboxes[hb].enemy_knockback = contact_knockback
-		contact_hitbox_x[hb] = contact_hitboxes[hb].position.x
 		
 	super()
 

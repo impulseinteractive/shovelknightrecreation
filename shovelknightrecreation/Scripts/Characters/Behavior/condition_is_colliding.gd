@@ -7,18 +7,15 @@ extends ConditionLeaf
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	if not actor is CharacterBody2D:
-		blackboard.set_value("IsCollidingWithWall", false)
-		return FAILURE
+		return SUCCESS
  
 	var body: CharacterBody2D = actor
  
 	if not body.is_on_wall():
-		blackboard.set_value("IsCollidingWithWall", false)
-		return FAILURE
+		return SUCCESS
  
 	if world_layers == 0:
-		blackboard.set_value("IsCollidingWithWall", true)
-		return SUCCESS
+		return FAILURE
  
 	for i in body.get_slide_collision_count():
 		var collision := body.get_slide_collision(i)
@@ -31,8 +28,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 			layer_ok = (collider.collision_layer & world_layers) != 0
  
 		if layer_ok:
-			blackboard.set_value("IsCollidingWithWall", true)
-			return SUCCESS
+			return FAILURE
  
-	blackboard.set_value("IsCollidingWithWall", false)
-	return FAILURE
+	return SUCCESS

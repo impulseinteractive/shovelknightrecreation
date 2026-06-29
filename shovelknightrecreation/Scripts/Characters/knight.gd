@@ -8,7 +8,9 @@ extends CharacterBody2D
 @export var ground_friction: float = 3000.0   ## The rate at which the knight slows down on the ground
 @export var air_friction: float = 500.0       ## The rate at which the Knight slows down in the air
 @export var terminal_velocity: float = 1600.0 ## The max fall speed of the knight
-var collision_shape_x: float                  ## default x pos of the collision shape
+var shape_arr: Array[CollisionShape2D]        ## Array of all collision shapes attached to knight
+var shape_x_arr: Array[float]                 ## default x pos collision shapes attached to knight
+
 
 # MOVEMENT VARS ------------------------------------------------------------------------------------
 @export_category("Movement")
@@ -53,7 +55,12 @@ func _ready() -> void:
 	if has_node("AnimatedSprite2D"):
 		sprite_ref = $AnimatedSprite2D
 	
-	collision_shape_x = $CollisionShape2D.position.x
+	# Get all collision shapes of the knight and their x values
+	for child in find_children("*"):
+		if child is CollisionShape2D:
+			shape_arr.append(child)
+			shape_x_arr.append(child.position.x)
+			
 	current_health = max_health
 	print_debug(name + " Health set to " + str(current_health))
 
@@ -84,10 +91,12 @@ func _physics_process(delta: float) -> void:
 	# Flip necessary components when character turns around
 	if look_direction == Vector2.LEFT:
 		sprite_ref.flip_h = true
-		$CollisionShape2D.position.x = -collision_shape_x
+		for shape in shape_arr:
+			shape.position.x = -shape_x_arr[shape_arr.find(shape)]
 	elif look_direction == Vector2.RIGHT:
 		sprite_ref.flip_h = false
-		$CollisionShape2D.position.x = collision_shape_x
+		for shape in shape_arr:
+			shape.position.x = shape_x_arr[shape_arr.find(shape)]
 		
 	# Return to idle pose when dno other actions are happening
 	#if (not is_damaged and not is_swinging):
