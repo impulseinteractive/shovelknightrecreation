@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://qm2alfofdh6y" path="res://Scripts/Characters/Behavior/condition_start_retreat.gd" id="9_0sisf"]
 [ext_resource type="Script" uid="uid://bt7gq7wo6tw5o" path="res://Scripts/Characters/Behavior/action_idle.gd" id="9_3lm2k"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="9_sxbeq"]
+[ext_resource type="Script" uid="uid://c6138cs76k3wk" path="res://Scripts/Characters/Behavior/condition_is_colliding.gd" id="13_0raye"]
 [ext_resource type="Script" uid="uid://41iym3iehqvg" path="res://Scripts/Characters/Behavior/action_retreat.gd" id="13_cgfvq"]
 [ext_resource type="Script" uid="uid://mxofnrdivj3u" path="res://Scripts/Characters/Behavior/action_adjust_retreat_probability.gd" id="14_sfreo"]
 
@@ -30,7 +31,7 @@ blackboard = {
 "is_dead": false,
 "is_hit": false,
 "is_idle": false,
-"retreat_probability": 0.0
+"retreat_probability": 0.5
 }
 metadata/_custom_type_script = "uid://dme5f24l0edsf"
 
@@ -83,15 +84,18 @@ script = ExtResource("9_sxbeq")
 wait_time = 0.5
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
-[node name="SequenceRetreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay" unique_id=1954075338]
-script = ExtResource("4_psloy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+[node name="SequenceReactiveRetreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay" unique_id=1580639059]
+script = ExtResource("4_r5spv")
+metadata/_custom_type_script = "uid://dcojdhvj8qcw0"
 
-[node name="IsRetreating" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=504946436]
+[node name="IsRetreating" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=504946436]
 script = ExtResource("9_0sisf")
 metadata/_custom_type_script = "uid://qm2alfofdh6y"
 
-[node name="Retreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceRetreat" unique_id=1899886849]
+[node name="IsCollidingWall" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=1333886165]
+script = ExtResource("13_0raye")
+
+[node name="Retreat" type="Node" parent="BeehaveTree/MainSelector/RetreatDelay/SequenceReactiveRetreat" unique_id=1899886849]
 script = ExtResource("13_cgfvq")
 metadata/_custom_type_script = "uid://41iym3iehqvg"
 
@@ -123,4 +127,5 @@ metadata/_custom_type_script = "uid://bc7puitbqj2g1"
 
 [node name="AdjustRetreatProbability" type="Node" parent="BeehaveTree/MainSelector/ShovelSwingDelay/SequenceChaseAndShovelSwing" unique_id=133748160]
 script = ExtResource("14_sfreo")
+retreat_probability_delta = 0.5
 metadata/_custom_type_script = "uid://mxofnrdivj3u"
