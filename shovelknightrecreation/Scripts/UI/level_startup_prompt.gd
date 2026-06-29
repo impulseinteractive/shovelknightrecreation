@@ -24,7 +24,6 @@ func _process(delta: float) -> void:
 		return
 	return
 
-
 func _on_enter_initial(new_state: LevelStateManager.LevelState):
 	if new_state == LevelStateManager.LevelState.INITIAL:
 		get_tree().paused = true

@@ -46,7 +46,6 @@ var is_swinging: bool = false             ## Whether the knight is currently swi
 var sprite_ref: AnimatedSprite2D    ## Reference to the sprite component
 
 signal on_health_changed(new_health: int)
-
 # --------------------------------------------------------------------------------------------------
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:

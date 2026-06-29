@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://utvbev3fwmg3"]
+
+[ext_resource type="Script" uid="uid://c4ijyl55k8mni" path="res://Scripts/UI/level_startup_prompt.gd" id="1_qqyd8"]
+
+[node name="LevelStartupPrompt" type="Control" unique_id=156246579]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qqyd8")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1169837007]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -12.0
+offset_right = 128.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=23683860]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "ASDFAGFDG"
+
+[node name="PressEnterToStart" type="RichTextLabel" parent="MarginContainer" unique_id=294968532]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "Press Enter to Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=844129713]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
